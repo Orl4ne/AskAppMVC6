@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskApp.Identity.DAL", "AskApp.Identity.DAL\AskApp.Identity.DAL.csproj", "{1E91102D-0681-48E2-8652-7511BA10C183}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AskApp.Identity.DAL", "AskApp.Identity.DAL\AskApp.Identity.DAL.csproj", "{1E91102D-0681-48E2-8652-7511BA10C183}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskApp.Web", "AskApp.Web\AskApp.Web.csproj", "{B9E29CBE-1A7F-4A46-B3C2-D2BC6D7F492B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AskApp.Web", "AskApp.Web\AskApp.Web.csproj", "{B9E29CBE-1A7F-4A46-B3C2-D2BC6D7F492B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskApp.Service.BLL", "AskApp.Service.BLL\AskApp.Service.BLL.csproj", "{887BC11D-CB4E-43E0-A91F-259B01236C46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AskApp.Service.BLL", "AskApp.Service.BLL\AskApp.Service.BLL.csproj", "{887BC11D-CB4E-43E0-A91F-259B01236C46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskApp.Service.DAL", "AskApp.Service.DAL\AskApp.Service.DAL.csproj", "{7E77769A-F85A-41AF-9C7F-2B4D0D81A28C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AskApp.Service.DAL", "AskApp.Service.DAL\AskApp.Service.DAL.csproj", "{7E77769A-F85A-41AF-9C7F-2B4D0D81A28C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskApp.Common", "AskApp.Common\AskApp.Common.csproj", "{8D1F7E3A-C662-4D0A-846E-B2512B437726}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AskApp.Common", "AskApp.Common\AskApp.Common.csproj", "{8D1F7E3A-C662-4D0A-846E-B2512B437726}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskApp.Service.DAL.Tests", "AskApp.Service.DAL.Tests\AskApp.Service.DAL.Tests.csproj", "{6F67DF1E-7E1A-4EA6-A513-4791E1CB3684}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AskApp.Service.DAL.Tests", "AskApp.Service.DAL.Tests\AskApp.Service.DAL.Tests.csproj", "{6F67DF1E-7E1A-4EA6-A513-4791E1CB3684}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskApp.Service.BLL.Tests", "AskApp.Service.BLL.Tests\AskApp.Service.BLL.Tests.csproj", "{29911FBB-58CC-4054-94A0-1DDF653DFDB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AskApp.Service.BLL.Tests", "AskApp.Service.BLL.Tests\AskApp.Service.BLL.Tests.csproj", "{29911FBB-58CC-4054-94A0-1DDF653DFDB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskApp.Identity", "AskApp.Identity\AskApp.Identity.csproj", "{9C29D044-A0C9-4A69-BB44-CDD370EFD2F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{29911FBB-58CC-4054-94A0-1DDF653DFDB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29911FBB-58CC-4054-94A0-1DDF653DFDB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29911FBB-58CC-4054-94A0-1DDF653DFDB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C29D044-A0C9-4A69-BB44-CDD370EFD2F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C29D044-A0C9-4A69-BB44-CDD370EFD2F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C29D044-A0C9-4A69-BB44-CDD370EFD2F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C29D044-A0C9-4A69-BB44-CDD370EFD2F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
