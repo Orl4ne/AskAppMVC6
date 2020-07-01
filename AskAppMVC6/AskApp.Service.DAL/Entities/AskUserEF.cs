@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AskApp.Common.TOs
+namespace AskApp.Ask.DAL.Entities
 {
-    public class UserTO
+    public class AskUserEF
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

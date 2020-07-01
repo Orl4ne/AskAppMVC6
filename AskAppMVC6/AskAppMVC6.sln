@@ -5,15 +5,15 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AskApp.Web", "AskApp.Web\AskApp.Web.csproj", "{B9E29CBE-1A7F-4A46-B3C2-D2BC6D7F492B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AskApp.Service.BLL", "AskApp.Service.BLL\AskApp.Service.BLL.csproj", "{887BC11D-CB4E-43E0-A91F-259B01236C46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AskApp.Ask.BLL", "AskApp.Service.BLL\AskApp.Ask.BLL.csproj", "{887BC11D-CB4E-43E0-A91F-259B01236C46}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AskApp.Service.DAL", "AskApp.Service.DAL\AskApp.Service.DAL.csproj", "{7E77769A-F85A-41AF-9C7F-2B4D0D81A28C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AskApp.Ask.DAL", "AskApp.Service.DAL\AskApp.Ask.DAL.csproj", "{7E77769A-F85A-41AF-9C7F-2B4D0D81A28C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AskApp.Common", "AskApp.Common\AskApp.Common.csproj", "{8D1F7E3A-C662-4D0A-846E-B2512B437726}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AskApp.Service.DAL.Tests", "AskApp.Service.DAL.Tests\AskApp.Service.DAL.Tests.csproj", "{6F67DF1E-7E1A-4EA6-A513-4791E1CB3684}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AskApp.Ask.DAL.Tests", "AskApp.Service.DAL.Tests\AskApp.Ask.DAL.Tests.csproj", "{6F67DF1E-7E1A-4EA6-A513-4791E1CB3684}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AskApp.Service.BLL.Tests", "AskApp.Service.BLL.Tests\AskApp.Service.BLL.Tests.csproj", "{29911FBB-58CC-4054-94A0-1DDF653DFDB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AskApp.Ask.BLL.Tests", "AskApp.Service.BLL.Tests\AskApp.Ask.BLL.Tests.csproj", "{29911FBB-58CC-4054-94A0-1DDF653DFDB5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AskApp.Identity", "AskApp.Identity\AskApp.Identity.csproj", "{9C29D044-A0C9-4A69-BB44-CDD370EFD2F5}"
 EndProject

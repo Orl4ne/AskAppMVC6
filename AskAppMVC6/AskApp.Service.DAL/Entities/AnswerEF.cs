@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AskApp.Service.DAL.Entities
+namespace AskApp.Ask.DAL.Entities
 {
     public class AnswerEF
     {

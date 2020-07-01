@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AskApp.Common.Interfaces.IRepositories
 {
-    public interface IAskUserRepository : IRepository<UserTO, int>
+    public interface IAskUserRepository : IRepository<AskUserTO, int>
     {
     }
 }
