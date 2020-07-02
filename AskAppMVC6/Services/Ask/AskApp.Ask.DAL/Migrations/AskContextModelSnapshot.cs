@@ -22,16 +22,20 @@ namespace AskApp.Ask.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("AssociatedQuestionId")
+                    b.Property<int?>("AssociatedQuestionId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("AuthorId")
+                    b.Property<int?>("AuthorId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Message")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AssociatedQuestionId");
+
+                    b.HasIndex("AuthorId");
 
                     b.ToTable("Answers");
                 });
@@ -59,7 +63,7 @@ namespace AskApp.Ask.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("AuthorId")
+                    b.Property<int?>("AuthorId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Date")
@@ -76,7 +80,27 @@ namespace AskApp.Ask.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AuthorId");
+
                     b.ToTable("Questions");
+                });
+
+            modelBuilder.Entity("AskApp.Ask.DAL.Entities.AnswerEF", b =>
+                {
+                    b.HasOne("AskApp.Ask.DAL.Entities.QuestionEF", "AssociatedQuestion")
+                        .WithMany()
+                        .HasForeignKey("AssociatedQuestionId");
+
+                    b.HasOne("AskApp.Ask.DAL.Entities.AskUserEF", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId");
+                });
+
+            modelBuilder.Entity("AskApp.Ask.DAL.Entities.QuestionEF", b =>
+                {
+                    b.HasOne("AskApp.Ask.DAL.Entities.AskUserEF", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId");
                 });
 #pragma warning restore 612, 618
         }

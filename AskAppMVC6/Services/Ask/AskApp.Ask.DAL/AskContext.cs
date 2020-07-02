@@ -11,10 +11,12 @@ namespace AskApp.Ask.DAL
         public AskContext()
         {
         }
+
         public AskContext(DbContextOptions<AskContext> options)
             : base(options)
         {
         }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (optionsBuilder is null)
