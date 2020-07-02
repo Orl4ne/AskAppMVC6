@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ExtensionsTests\" />
+    <ProjectReference Include="..\AskApp.Ask.DAL\AskApp.Ask.DAL.csproj" />
   </ItemGroup>
 
 </Project>
