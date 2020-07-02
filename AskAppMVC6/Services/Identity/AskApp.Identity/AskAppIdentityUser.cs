@@ -5,8 +5,7 @@ using System.Text;
 
 namespace AskApp.Identity
 {
-    public class User : IdentityUser<int>
+    public class AskAppIdentityUser : IdentityUser<int>
     {
-        public int Id { get; set; }
     }
 }

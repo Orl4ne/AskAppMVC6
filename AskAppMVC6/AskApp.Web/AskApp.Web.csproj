@@ -11,15 +11,12 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Services\Ask\AskApp.Ask.DAL\AskApp.Ask.DAL.csproj" />
     <ProjectReference Include="..\Services\Identity\AskApp.Identity\AskApp.Identity.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\" />
   </ItemGroup>
 
 </Project>

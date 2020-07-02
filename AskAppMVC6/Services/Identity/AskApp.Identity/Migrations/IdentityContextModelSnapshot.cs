@@ -16,7 +16,7 @@ namespace AskApp.Identity.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.5");
 
-            modelBuilder.Entity("AskApp.Identity.User", b =>
+            modelBuilder.Entity("AskApp.Identity.AskAppIdentityUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -66,7 +66,7 @@ namespace AskApp.Identity.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("AskAppIdentityUsers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
