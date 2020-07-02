@@ -7,7 +7,7 @@ using System.Text;
 
 namespace AskApp.Identity
 {
-    public class IdentityContext : IdentityDbContext
+    public class IdentityContext : IdentityDbContext<AskAppIdentityUser, AskAppUserRole, int>
     {
         public IdentityContext()
         {
