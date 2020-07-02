@@ -13,4 +13,13 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Services\Ask\AskApp.Ask.DAL\AskApp.Ask.DAL.csproj" />
+    <ProjectReference Include="..\Services\Identity\AskApp.Identity\AskApp.Identity.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\" />
+  </ItemGroup>
+
 </Project>
