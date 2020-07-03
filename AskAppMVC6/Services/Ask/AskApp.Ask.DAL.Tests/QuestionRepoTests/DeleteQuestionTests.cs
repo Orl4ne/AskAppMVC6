@@ -15,7 +15,7 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
     public class DeleteQuestionTests
     {
         [TestMethod]
-        public void DeleteAskUser_Successful()
+        public void DeleteQuestion_Successful()
         {
             var options = new DbContextOptionsBuilder<AskContext>()
                 .UseInMemoryDatabase(databaseName: MethodBase.GetCurrentMethod().Name)
@@ -47,7 +47,7 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
         }
 
         [TestMethod]
-        public void DeleteAskUser_ProvidingNull_ThrowException()
+        public void DeleteQuestion_ProvidingNull_ThrowException()
         {
             var options = new DbContextOptionsBuilder<AskContext>()
                  .UseInMemoryDatabase(databaseName: MethodBase.GetCurrentMethod().Name)
@@ -60,7 +60,7 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
         }
 
         [TestMethod]
-        public void DeleteAskUser_ProvidingNonExistingAskUser_ThrowException()
+        public void DeleteQuestion_ProvidingNonExistingAskUser_ThrowException()
         {
             var options = new DbContextOptionsBuilder<AskContext>()
                  .UseInMemoryDatabase(databaseName: MethodBase.GetCurrentMethod().Name)

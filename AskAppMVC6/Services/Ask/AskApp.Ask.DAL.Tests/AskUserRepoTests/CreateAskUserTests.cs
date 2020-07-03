@@ -47,7 +47,7 @@ namespace AskApp.Ask.DAL.Tests.AskUserRepoTests
         }
 
         [TestMethod]
-        public void CreateAskUser_AddExistingMedia_DoNotInsertTwiceInDb()
+        public void CreateAskUser_AddExistingAskUser_DoNotInsertTwiceInDb()
         {
             //ARRANGE
             var options = new DbContextOptionsBuilder<AskContext>()
