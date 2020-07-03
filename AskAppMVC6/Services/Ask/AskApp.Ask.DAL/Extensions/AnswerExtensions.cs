@@ -6,7 +6,7 @@ using System.Text;
 
 namespace AskApp.Ask.DAL.Extensions
 {
-    public static class AswerExtensions
+    public static class AnswerExtensions
     {
         public static AnswerTO ToTransferObject(this AnswerEF answer)
         {
@@ -44,9 +44,9 @@ namespace AskApp.Ask.DAL.Extensions
                 throw new ArgumentNullException(nameof(answer));
 
             answerToModify.Id = answer.Id;
-            answerToModify.Author = answer.Author.ToEF();
+            answerToModify.Author = answer.Author.ToTrackedEF(answerToModify.Author);
             answerToModify.Message = answer.Message;
-            answerToModify.AssociatedQuestion = answer.AssociatedQuestion.ToEF();
+            answerToModify.AssociatedQuestion = answer.AssociatedQuestion.ToTrackedEF(answerToModify.AssociatedQuestion);
 
             return answerToModify;
         }
