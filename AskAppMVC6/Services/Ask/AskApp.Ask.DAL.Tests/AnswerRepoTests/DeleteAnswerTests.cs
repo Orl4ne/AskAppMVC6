@@ -9,13 +9,13 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
+namespace AskApp.Ask.DAL.Tests.AnswerRepoTests
 {
     [TestClass]
-    public class DeleteQuestionTests
+    public class DeleteAnswerTests
     {
         [TestMethod]
-        public void DeleteQuestion_Successful()
+        public void DeleteAnswer_Successful()
         {
             var options = new DbContextOptionsBuilder<AskContext>()
                 .UseInMemoryDatabase(databaseName: MethodBase.GetCurrentMethod().Name)
@@ -23,11 +23,15 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
             using var context = new AskContext(options);
             IAskUserRepository askUserRepository = new AskUserRepository(context);
             IQuestionRepository questionRepository = new QuestionRepository(context);
+            IAnswerRepository answerRepository = new AnswerRepository(context);
 
+            //ACT
             var user = new AskUserTO { FirstName = "Jean-Claude", LastName = "DuPet" };
             var user2 = new AskUserTO { FirstName = "Martine", LastName = "ALaPlage" };
+            var user3 = new AskUserTO { FirstName = "Steve", LastName = "Pantelon" };
             var addedUser = askUserRepository.Create(user);
             var addedUser2 = askUserRepository.Create(user2);
+            var addedUser3 = askUserRepository.Create(user3);
             context.SaveChanges();
             DateTime date = DateTime.Now;
             var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author = addedUser };
@@ -37,29 +41,36 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
             var addedQuestion2 = questionRepository.Create(question2);
             var addedQuestion3 = questionRepository.Create(question3);
             context.SaveChanges();
+            var answer = new AnswerTO { Message = "En fait, c'est facile il faut toujorus faire des tests", Author = addedUser2, AssociatedQuestion = addedQuestion, };
+            var answer2 = new AnswerTO { Message = "Oui c'est trop facile les tests avec InMemory", Author = addedUser3, AssociatedQuestion = addedQuestion, };
+            var answer3 = new AnswerTO { Message = "Tu dois d'abord créer un projet web app avec .Net Core", Author = addedUser, AssociatedQuestion = addedQuestion2, };
+            var addedAnswer = answerRepository.Create(answer);
+            var addedAnswer2 = answerRepository.Create(answer2);
+            var addedAnswer3 = answerRepository.Create(answer3);
+            context.SaveChanges();
 
             //ACT
-            var test = questionRepository.Delete(addedQuestion3);
+            var test = answerRepository.Delete(addedAnswer3);
             context.SaveChanges();
 
             //ASSERT
-            Assert.AreEqual(2, context.Questions.Count());
+            Assert.AreEqual(2, context.Answers.Count());
         }
 
         [TestMethod]
-        public void DeleteQuestion_ProvidingNull_ThrowException()
+        public void DeleteAnswer_ProvidingNull_ThrowException()
         {
             var options = new DbContextOptionsBuilder<AskContext>()
                  .UseInMemoryDatabase(databaseName: MethodBase.GetCurrentMethod().Name)
                  .Options;
             using var context = new AskContext(options);
-            IQuestionRepository questionRepository = new QuestionRepository(context);
+            IAnswerRepository answerRepository = new AnswerRepository(context);
 
-            Assert.ThrowsException<KeyNotFoundException>(() => questionRepository.Delete(null));
+            Assert.ThrowsException<KeyNotFoundException>(() => answerRepository.Delete(null));
         }
 
         [TestMethod]
-        public void DeleteQuestion_ProvidingNonExistingQuestion_ThrowException()
+        public void DeleteAnswer_ProvidingNonExistingAnswer_ThrowException()
         {
             var options = new DbContextOptionsBuilder<AskContext>()
                  .UseInMemoryDatabase(databaseName: MethodBase.GetCurrentMethod().Name)
@@ -67,14 +78,21 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
             using var context = new AskContext(options);
             IAskUserRepository askUserRepository = new AskUserRepository(context);
             IQuestionRepository questionRepository = new QuestionRepository(context);
+            IAnswerRepository answerRepository = new AnswerRepository(context);
 
+            //ACT
             var user = new AskUserTO { FirstName = "Jean-Claude", LastName = "DuPet" };
+            var user2 = new AskUserTO { FirstName = "Martine", LastName = "ALaPlage" };
             var addedUser = askUserRepository.Create(user);
+            var addedUser2 = askUserRepository.Create(user2);
             context.SaveChanges();
             DateTime date = DateTime.Now;
             var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author = addedUser };
+            var addedQuestion = questionRepository.Create(question);
+            context.SaveChanges();
+            var answer = new AnswerTO { Message = "En fait, c'est facile il faut toujorus faire des tests", Author = addedUser2, AssociatedQuestion = addedQuestion, };
 
-            Assert.ThrowsException<ArgumentException>(() => questionRepository.Delete(question));
+            Assert.ThrowsException<ArgumentException>(() => answerRepository.Delete(answer));
         }
     }
 }
