@@ -48,7 +48,6 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
                 .UseInMemoryDatabase(databaseName: MethodBase.GetCurrentMethod().Name)
                 .Options;
             using var context = new AskContext(options);
-            IAskUserRepository askUserRepository = new AskUserRepository(context);
             IQuestionRepository questionRepository = new QuestionRepository(context);
             Assert.ThrowsException<ArgumentNullException>(() => questionRepository.Create(null));
         }
@@ -76,7 +75,7 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
             context.SaveChanges();
 
             //ASSERT
-            Assert.AreEqual(1, context.AskUsers.Count());
+            Assert.AreEqual(1, context.Questions.Count());
         }
     }
 }
