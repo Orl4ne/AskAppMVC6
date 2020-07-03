@@ -15,7 +15,7 @@ namespace AskApp.Ask.DAL.Tests.AskUserRepoTests
     public class CreateAskUserTests
     {
         [TestMethod]
-        public void CreateMedia_Successful()
+        public void CreateAskUser_Successful()
         {
             // ARRANGE
             var options = new DbContextOptionsBuilder<AskContext>()
@@ -36,7 +36,7 @@ namespace AskApp.Ask.DAL.Tests.AskUserRepoTests
         }
 
         [TestMethod]
-        public void CreateMedia_AddNull_ThrowException()
+        public void CreateAskUser_AddNull_ThrowException()
         {
             var options = new DbContextOptionsBuilder<AskContext>()
             .UseInMemoryDatabase(databaseName: MethodBase.GetCurrentMethod().Name)
@@ -47,7 +47,7 @@ namespace AskApp.Ask.DAL.Tests.AskUserRepoTests
         }
 
         [TestMethod]
-        public void CreateMedia_AddExistingMedia_DoNotInsertTwiceInDb()
+        public void CreateAskUser_AddExistingMedia_DoNotInsertTwiceInDb()
         {
             //ARRANGE
             var options = new DbContextOptionsBuilder<AskContext>()
