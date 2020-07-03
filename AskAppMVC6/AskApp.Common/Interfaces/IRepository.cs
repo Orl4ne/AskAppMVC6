@@ -10,7 +10,7 @@ namespace AskApp.Common.Interfaces
         TType Create(TType entity);
         TType Modify(TType entity);
         bool Delete(TType entity);
-        List<TType> GetAllMedias();
+        List<TType> GetAll();
         TType GetById(TIdType id);
     }
 }

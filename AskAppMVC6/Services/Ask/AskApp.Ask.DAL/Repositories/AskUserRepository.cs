@@ -55,7 +55,7 @@ namespace AskApp.Ask.DAL.Repositories
             return true;
         }
 
-        public List<AskUserTO> GetAllMedias()
+        public List<AskUserTO> GetAll()
         {
             var list = askContext.AskUsers.AsEnumerable()
                  ?.Select(x => x.ToTransferObject())
