@@ -17,25 +17,23 @@ namespace AskApp.Ask.DAL.Tests.ExtensionsTests
             //ARRANGE
             DateTime date = DateTime.Now;
             var user = new AskUserEF { Id = 4, FirstName = "Jean-Claude", LastName = "DuPet" };
+            var user2 = new AskUserEF { Id = 2, FirstName = "Martine", LastName = "ALaPlage" };
             var question = new QuestionEF { Id = 1, IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author = user };
+            var answer = new AnswerEF { Message = "En fait, c'est facile il faut toujorus faire des tests", Author = user2,AssociatedQuestion=question, };
             //ACT
-            var result = question.ToTransferObject();
+            var result = answer.ToTransferObject();
             //Assert
-            Assert.AreEqual(question.Id, result.Id);
-            Assert.AreEqual(question.IsArchived, result.IsArchived);
-            Assert.AreEqual(question.Author, result.Author.ToTrackedEF(question.Author));
-            Assert.AreEqual(question.Title, result.Title);
-            Assert.AreEqual(question.Date, result.Date);
-            Assert.AreEqual(question.Message, result.Message);
+            Assert.AreEqual(answer.Author, result.Author.ToTrackedEF(answer.Author));
+            Assert.AreEqual(answer.Message, result.Message);
         }
 
         [TestMethod]
         public void ToTransfertObject_ProvidingNull_ThrowException()
         {
             //ARRANGE
-            QuestionEF question = null;
+            AnswerEF answer = null;
             //ACT
-            Assert.ThrowsException<ArgumentNullException>(() => question.ToTransferObject());
+            Assert.ThrowsException<ArgumentNullException>(() => answer.ToTransferObject());
         }
         [TestMethod]
         public void ToEF_Successfull()
@@ -43,46 +41,47 @@ namespace AskApp.Ask.DAL.Tests.ExtensionsTests
             //ARRANGE
             DateTime date = DateTime.Now;
             var user = new AskUserTO { Id = 4, FirstName = "Jean-Claude", LastName = "DuPet" };
+            var user2 = new AskUserTO { Id = 2, FirstName = "Martine", LastName = "ALaPlage" };
             var question = new QuestionTO { Id = 1, IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author = user };
+            var answer = new AnswerTO { Message = "En fait, c'est facile il faut toujorus faire des tests", Author = user2, AssociatedQuestion = question, };
             //ACT
-            var result = question.ToEF();
+            var result = answer.ToEF();
             //Assert
-            Assert.AreEqual(question.Id, result.Id);
-            Assert.AreEqual(question.IsArchived, result.IsArchived);
-            Assert.AreEqual(question.Author.ToTrackedEF(result.Author), result.Author);
-            Assert.AreEqual(question.Title, result.Title);
-            Assert.AreEqual(question.Date, result.Date);
-            Assert.AreEqual(question.Message, result.Message);
+            Assert.AreEqual(answer.Author.ToTrackedEF(result.Author), result.Author);
+            Assert.AreEqual(answer.Message, result.Message);
         }
 
         [TestMethod]
         public void ToTEF_ProvidingNull_ThrowException()
         {
             //ARRANGE
-            QuestionTO question = null;
+            AnswerTO answer = null;
             //ACT
-            Assert.ThrowsException<ArgumentNullException>(() => question.ToEF());
+            Assert.ThrowsException<ArgumentNullException>(() => answer.ToEF());
         }
 
         [TestMethod]
         public void ToTrackedEF_ProvidingNullEF_ThrowException()
         {
             //ARRANGE
-            QuestionTO question = null;
-            QuestionEF questionToModify = null;
+            AnswerTO answer = null;
+            AnswerEF answerToModify = null;
             //ACT
-            Assert.ThrowsException<ArgumentNullException>(() => question.ToTrackedEF(questionToModify));
+            Assert.ThrowsException<ArgumentNullException>(() => answer.ToTrackedEF(answerToModify));
         }
+
         [TestMethod]
         public void ToTrackedEF_ProvidingNullTO_ThrowException()
         {
             //ARRANGE
-            QuestionTO question = null;
+            AnswerTO answer = null;
             DateTime date = DateTime.Now;
             var user = new AskUserEF { Id = 4, FirstName = "Jean-Claude", LastName = "DuPet" };
-            var questionToModify = new QuestionEF { Id = 1, IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author = user };
+            var user2 = new AskUserEF { Id = 2, FirstName = "Martine", LastName = "ALaPlage" };
+            var question = new QuestionEF { Id = 1, IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author = user };
+            var answerToModify = new AnswerEF { Message = "En fait, c'est facile il faut toujorus faire des tests", Author = user2, AssociatedQuestion = question, };
             //ACT
-            Assert.ThrowsException<ArgumentNullException>(() => question.ToTrackedEF(questionToModify));
+            Assert.ThrowsException<ArgumentNullException>(() => answer.ToTrackedEF(answerToModify));
         }
     }
 }
