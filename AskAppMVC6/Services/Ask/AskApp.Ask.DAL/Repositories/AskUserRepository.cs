@@ -49,8 +49,8 @@ namespace AskApp.Ask.DAL.Repositories
                 throw new ArgumentException("AskUser To Delete Invalid Id");
             }
 
-            var media = askContext.AskUsers.FirstOrDefault(x => x.Id == entity.Id);
-            askContext.AskUsers.Remove(media);
+            var askUser = askContext.AskUsers.FirstOrDefault(x => x.Id == entity.Id);
+            askContext.AskUsers.Remove(askUser);
             askContext.SaveChanges();
             return true;
         }
