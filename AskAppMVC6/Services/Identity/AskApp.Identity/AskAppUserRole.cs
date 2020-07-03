@@ -7,5 +7,9 @@ namespace AskApp.Identity
 {
     public class AskAppUserRole : IdentityRole<int>
     {
+        public AskAppUserRole() : base()
+        { }
+        public AskAppUserRole(string userName) : base(userName)
+        { }
     }
 }

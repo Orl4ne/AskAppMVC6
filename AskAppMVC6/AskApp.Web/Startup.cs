@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using AskApp.Ask.DAL;
 using AskApp.Identity;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
 
 namespace AskApp.Web
 {
@@ -36,11 +37,12 @@ namespace AskApp.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            // Configuring Service ASK
+            // Configuring Services contexts
             services.AddDbContext<AskContext>(options =>
-                options.UseSqlite(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlite(@"Data Source = C:\Users\Orlane\source\repos\Orl4ne\AskAppMVC6\AskAppMVC6\Services\Ask\AskApp.Ask.DAL\askApp.db"));
 
+            services.AddDbContext<IdentityContext>(options =>
+               options.UseSqlite(@"Data Source = C:\Users\Orlane\source\repos\Orl4ne\AskAppMVC6\AskAppMVC6\Services\Identity\AskApp.Identity\askAppIdentity.db"));
             services.AddControllersWithViews();
             services.AddRazorPages();
 
@@ -53,11 +55,14 @@ namespace AskApp.Web
                 options.User.RequireUniqueEmail = true;
                 options.SignIn.RequireConfirmedEmail = false;
             })
-                 .AddDefaultUI()
-                 .AddEntityFrameworkStores<IdentityContext>()
-               .AddDefaultTokenProviders();
+                    .AddRoleManager<RoleManager<AskAppUserRole>>()
+                    .AddUserManager<UserManager<AskAppIdentityUser>>()
+                    .AddSignInManager()
+                    .AddDefaultUI()
+                    .AddEntityFrameworkStores<IdentityContext>()
+                    .AddDefaultTokenProviders();
         }
-       
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
