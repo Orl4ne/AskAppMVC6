@@ -32,7 +32,7 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
             context.SaveChanges();
             DateTime date = DateTime.Now;
             var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test!", Title = "Problème avec Tests", Date = date, Author = addedUser };
-            var question2 = new QuestionTO { IsArchived = false, Message = "Comment créer un projet MVC 6?", Title = "MVC6", Date = date, Author = addedUser2 };
+            var question2 = new QuestionTO { IsArchived = true, Message = "Comment créer un projet MVC 6?", Title = "MVC6", Date = date, Author = addedUser2 };
             var question3 = new QuestionTO { IsArchived = false, Message = "Comment faire boucle foreach?", Title = "foreach", Date = date, Author = addedUser2 };
             var addedQuestion = questionRepository.Create(question);
             var addedQuestion2 = questionRepository.Create(question2);
@@ -43,7 +43,7 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
             var test = questionRepository.GetAll();
 
             //ASSERT
-            Assert.AreEqual(3, test.Count());
+            Assert.AreEqual(2, test.Count()); // Should be 2 because for the 2nd question, IsArchived = true
         }
 
         [TestMethod]

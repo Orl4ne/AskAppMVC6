@@ -48,7 +48,7 @@ namespace AskApp.Ask.DAL.Extensions
                 throw new ArgumentNullException(nameof(question));
 
             questionToModify.Id = question.Id;
-            questionToModify.Author = question.Author.ToEF();
+            questionToModify.Author = question.Author.ToTrackedEF(questionToModify.Author);
             questionToModify.Date = question.Date;
             questionToModify.IsArchived = question.IsArchived;
             questionToModify.Message = question.Message;
