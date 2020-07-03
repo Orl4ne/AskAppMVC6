@@ -40,7 +40,7 @@ namespace AskApp.Ask.DAL.Tests.AskUserRepoTests
         }
 
         [TestMethod]
-        public void GetAllAskUsers_NoMediaInDb_ThrowException()
+        public void GetAllAskUsers_NoAskUserInDb_ThrowException()
         {
             var options = new DbContextOptionsBuilder<AskContext>()
                 .UseInMemoryDatabase(databaseName: MethodBase.GetCurrentMethod().Name)
