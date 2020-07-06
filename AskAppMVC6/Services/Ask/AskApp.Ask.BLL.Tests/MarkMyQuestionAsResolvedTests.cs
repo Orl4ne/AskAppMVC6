@@ -28,8 +28,10 @@ namespace AskApp.Ask.BLL.Tests
                 .Returns(MockQuestion);
             mockQuestionRepository.Setup(u => u.GetById(It.IsAny<int>()))
                 .Returns(MockQuestion);
+            var mockAskUserRepository = new Mock<IAskUserRepository>();
+            var mockAnswerRepository = new Mock<IAnswerRepository>();
 
-            var askUC = new AskUC(mockQuestionRepository.Object);
+            var askUC = new AskUC(mockAnswerRepository.Object, mockQuestionRepository.Object, mockAskUserRepository.Object);
             var modifiedQuestion = askUC.MarkMyQuestionAsResolved(1);
 
             Assert.IsNotNull(modifiedQuestion);
@@ -40,8 +42,10 @@ namespace AskApp.Ask.BLL.Tests
         [TestMethod]
         public void MarkMyQuestionAsResolved_NonExistingQuestionSubmitted_ThrowException()
         {
+            var mockAnswerRepository = new Mock<IAnswerRepository>();
+            var mockAskUserRepository = new Mock<IAskUserRepository>();
             var mockQuestionRepository = new Mock<IQuestionRepository>();
-            var askUC = new AskUC(mockQuestionRepository.Object);
+            var askUC = new AskUC(mockAnswerRepository.Object, mockQuestionRepository.Object, mockAskUserRepository.Object);
 
             Assert.ThrowsException<NullReferenceException>(() => askUC.MarkMyQuestionAsResolved(1678));
         }

@@ -24,13 +24,15 @@ namespace AskApp.Ask.BLL.Tests
         {
             var mockQuestionRepository = new Mock<IQuestionRepository>();
             mockQuestionRepository.Setup(u => u.Create(It.IsAny<QuestionTO>()))
-                          .Returns(MockQuestion);
+                         .Returns(MockQuestion);
+            var mockAnswerRepository = new Mock<IAnswerRepository>();
+            var mockAskUserRepository = new Mock<IAskUserRepository>();
 
             var user = new AskUserTO { FirstName = "Jean-Claude", LastName = "DuPet" };
             DateTime date = DateTime.Now;
             var question2 = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test!", Title = "Problème avec Tests", Date = date, Author = user };
 
-            var askUC = new AskUC(mockQuestionRepository.Object);
+            var askUC = new AskUC(mockAnswerRepository.Object, mockQuestionRepository.Object, mockAskUserRepository.Object);
             var addedQuestion = askUC.AskAQuestion(question2);
 
             Assert.IsNotNull(addedQuestion);
@@ -40,7 +42,10 @@ namespace AskApp.Ask.BLL.Tests
         public void AskAQuestion_NullQuestionSubmitted_ThrowException()
         {
             var mockQuestionRepository = new Mock<IQuestionRepository>();
-            var askUC = new AskUC(mockQuestionRepository.Object);
+            var mockAnswerRepository = new Mock<IAnswerRepository>();
+            var mockAskUserRepository = new Mock<IAskUserRepository>();
+
+            var askUC = new AskUC(mockAnswerRepository.Object, mockQuestionRepository.Object, mockAskUserRepository.Object);
 
             Assert.ThrowsException<NullReferenceException>(() => askUC.AskAQuestion(null));
         }

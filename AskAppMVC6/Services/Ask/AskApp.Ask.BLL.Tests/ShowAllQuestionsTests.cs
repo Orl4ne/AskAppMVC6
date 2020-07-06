@@ -30,9 +30,12 @@ namespace AskApp.Ask.BLL.Tests
         public void ShowAllQuestions_Successful()
         {
             var mockQuestionRepository = new Mock<IQuestionRepository>();
-            mockQuestionRepository.Setup(x => x.GetAll()).Returns(MockListOfQuestions());
+            mockQuestionRepository.Setup(x => x.GetAll())
+                .Returns(MockListOfQuestions());
+            var mockAnswerRepository = new Mock<IAnswerRepository>();
+            var mockAskUserRepository = new Mock<IAskUserRepository>();
 
-            var askUC = new AskUC(mockQuestionRepository.Object);
+            var askUC = new AskUC(mockAnswerRepository.Object, mockQuestionRepository.Object, mockAskUserRepository.Object);
             var questions = askUC.ShowAllQuestions();
 
             Assert.AreEqual(3, questions.Count());

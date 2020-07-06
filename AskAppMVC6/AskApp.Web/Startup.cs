@@ -15,6 +15,10 @@ using AskApp.Ask.DAL;
 using AskApp.Identity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
+using AskApp.Ask.DAL.Repositories;
+using AskApp.Common.Interfaces.IRepositories;
+using AskApp.Ask.BLL;
+using AskApp.Common.Interfaces;
 
 namespace AskApp.Web
 {
@@ -61,6 +65,11 @@ namespace AskApp.Web
                     .AddDefaultUI()
                     .AddEntityFrameworkStores<IdentityContext>()
                     .AddDefaultTokenProviders();
+
+            services.AddTransient<IQuestionRepository, QuestionRepository>();
+            services.AddTransient<IAnswerRepository, AnswerRepository>();
+            services.AddTransient<IAskUserRepository, AskUserRepository>();
+            services.AddTransient<IAskUC, AskUC>();
         }
 
 

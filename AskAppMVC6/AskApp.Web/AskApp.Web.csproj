@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Services\Ask\AskApp.Ask.BLL\AskApp.Ask.BLL.csproj" />
     <ProjectReference Include="..\Services\Ask\AskApp.Ask.DAL\AskApp.Ask.DAL.csproj" />
     <ProjectReference Include="..\Services\Identity\AskApp.Identity\AskApp.Identity.csproj" />
   </ItemGroup>
