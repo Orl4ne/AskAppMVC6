@@ -10,8 +10,8 @@ namespace AskApp.Common.Interfaces
         List<QuestionTO> ShowAllQuestions();
         List<QuestionTO> ShowMyQuestions();
         QuestionTO AskAQuestion(QuestionTO Question);
-        QuestionTO ShowThisQuestion(QuestionTO Question);
-        AnswerTO AnsweringQuestion(QuestionTO Question, AnswerTO Answer);
-        QuestionTO MarkMyQuestionAsResolved(QuestionTO Question);
+        QuestionTO ShowThisQuestion(int QuestionId);
+        AnswerTO AnsweringQuestion(int QuestionId, AnswerTO Answer);
+        QuestionTO MarkMyQuestionAsResolved(int QuestionId);
     }
 }

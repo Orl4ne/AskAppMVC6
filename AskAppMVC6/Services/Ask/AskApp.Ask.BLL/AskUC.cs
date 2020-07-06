@@ -2,40 +2,47 @@
 using AskApp.Common.TOs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AskApp.Ask.BLL
 {
     public partial class AskUC : IAskUC
     {
-        public AnswerTO AnsweringQuestion(QuestionTO Question, AnswerTO Answer)
+        public AnswerTO AnsweringQuestion(int QuestionId, AnswerTO Answer)
         {
-            throw new NotImplementedException();
+            var question = questionRepository.GetById(QuestionId);
+            Answer.AssociatedQuestion = question;
+            return answerRepository.Create(Answer);
         }
 
         public QuestionTO AskAQuestion(QuestionTO Question)
         {
-            throw new NotImplementedException();
+            var date = DateTime.Now;
+            Question.Date = date;
+            return questionRepository.Create(Question);
         }
 
-        public QuestionTO MarkMyQuestionAsResolved(QuestionTO Question)
+        public QuestionTO MarkMyQuestionAsResolved(int QuestionId)
         {
-            throw new NotImplementedException();
+            var question = questionRepository.GetById(QuestionId);
+            question.IsArchived = true;
+            return questionRepository.Modify(question);
         }
 
         public List<QuestionTO> ShowAllQuestions()
         {
-            throw new NotImplementedException();
+            return questionRepository.GetAll();
         }
 
-        public List<QuestionTO> ShowMyQuestions()
+        public List<QuestionTO> ShowMyQuestions(int UserId)
         {
-            throw new NotImplementedException();
+            return questionRepository.GetAll().Where(x => x.Author.Id == UserId).ToList();
         }
 
-        public QuestionTO ShowThisQuestion(QuestionTO Question)
+        public QuestionTO ShowThisQuestion(int QuestionId)
         {
-            throw new NotImplementedException();
+            return questionRepository.GetById(QuestionId);
         }
     }
 }
