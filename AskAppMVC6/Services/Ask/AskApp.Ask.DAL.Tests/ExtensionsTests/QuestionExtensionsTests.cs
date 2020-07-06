@@ -12,7 +12,7 @@ namespace AskApp.Ask.DAL.Tests.ExtensionsTests
     public class QuestionExtensionsTests
     {
         [TestMethod]
-        public void ToTransfertObject_Successfull()
+        public void ToTransfertObject_Successful()
         {
             //ARRANGE
             DateTime date = DateTime.Now;
@@ -38,7 +38,7 @@ namespace AskApp.Ask.DAL.Tests.ExtensionsTests
             Assert.ThrowsException<ArgumentNullException>(() => question.ToTransferObject());
         }
         [TestMethod]
-        public void ToEF_Successfull()
+        public void ToEF_Successful()
         {
             //ARRANGE
             DateTime date = DateTime.Now;

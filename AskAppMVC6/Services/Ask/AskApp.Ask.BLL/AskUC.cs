@@ -7,7 +7,7 @@ using System.Text;
 
 namespace AskApp.Ask.BLL
 {
-    public partial class AskUC : IAskUC
+    public partial class AskUC :IAskUC
     {
         public AnswerTO AnsweringQuestion(int QuestionId, AnswerTO Answer)
         {

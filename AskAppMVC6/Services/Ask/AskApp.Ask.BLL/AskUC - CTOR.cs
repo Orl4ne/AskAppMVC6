@@ -1,11 +1,12 @@
-﻿using AskApp.Common.Interfaces.IRepositories;
+﻿using AskApp.Common.Interfaces;
+using AskApp.Common.Interfaces.IRepositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace AskApp.Ask.BLL
 {
-    public partial class AskUC
+    public partial class AskUC : IAskUC
     {
         private readonly IQuestionRepository questionRepository;
         private readonly IAnswerRepository answerRepository;
