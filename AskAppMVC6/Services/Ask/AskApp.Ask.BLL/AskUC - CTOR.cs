@@ -26,5 +26,12 @@ namespace AskApp.Ask.BLL
         {
             this.askUserRepository = askUserRepository ?? throw new System.ArgumentNullException(nameof(askUserRepository));
         }
+        public AskUC(IAnswerRepository answerRepository, IQuestionRepository questionRepository )
+        {
+            this.questionRepository = questionRepository ?? throw new System.ArgumentNullException(nameof(questionRepository));
+            this.answerRepository = answerRepository ?? throw new System.ArgumentNullException(nameof(answerRepository));
+            
+        }
+
     }
 }
