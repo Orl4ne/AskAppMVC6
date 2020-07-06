@@ -15,8 +15,6 @@ using AskApp.Ask.DAL;
 using AskApp.Identity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
-using AskApp.Common.Interfaces.IRepositories;
-using AskApp.Ask.DAL.Repositories;
 
 namespace AskApp.Web
 {
@@ -45,10 +43,8 @@ namespace AskApp.Web
 
             services.AddDbContext<IdentityContext>(options =>
                options.UseSqlite(@"Data Source = C:\Users\Orlane\source\repos\Orl4ne\AskAppMVC6\AskAppMVC6\Services\Identity\AskApp.Identity\askAppIdentity.db"));
-            
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddSession();
 
             //Configuring Service Identity
             services.AddIdentity<AskAppIdentityUser, AskAppUserRole>(options =>
@@ -65,19 +61,8 @@ namespace AskApp.Web
                     .AddDefaultUI()
                     .AddEntityFrameworkStores<IdentityContext>()
                     .AddDefaultTokenProviders();
-
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = IdentityConstants.ApplicationScheme;
-                options.DefaultChallengeScheme = IdentityConstants.ApplicationScheme;
-                options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
-            })
-            .AddIdentityCookies();
-            
-            //Injection de dépendance
-            services.AddTransient<IQuestionRepository, QuestionRepository>();
-            services.AddTransient<IAnswerRepository, AnswerRepository>();
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -100,7 +85,6 @@ namespace AskApp.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
