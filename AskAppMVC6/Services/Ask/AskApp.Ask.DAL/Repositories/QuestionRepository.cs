@@ -4,6 +4,7 @@ using AskApp.Common.TOs;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
@@ -17,6 +18,7 @@ namespace AskApp.Ask.DAL.Repositories
             this.askContext = askContext;
         }
 
+        [ExcludeFromCodeCoverage]
         public void Dispose()
         {
             askContext.Dispose();
