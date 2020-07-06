@@ -8,6 +8,8 @@ using Microsoft.Extensions.Logging;
 using AskApp.Web.Models;
 using AskApp.Common.Interfaces.IRepositories;
 using AskApp.Common.Interfaces;
+using AskApp.Identity;
+using Microsoft.AspNetCore.Identity;
 
 namespace AskApp.Web.Controllers
 {
@@ -15,20 +17,28 @@ namespace AskApp.Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IAskUC _askUC;
-        
+        private readonly UserManager<AskAppIdentityUser> _userManager;
+        private readonly SignInManager<AskAppIdentityUser> _signInManager;
 
-        public HomeController(ILogger<HomeController> logger, IAskUC askUC)
+        public HomeController(ILogger<HomeController> logger, IAskUC askUC, UserManager<AskAppIdentityUser> userManager, SignInManager<AskAppIdentityUser> signInManager)
         {
             _logger = logger;
             _askUC = askUC;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         public IActionResult Index()
         {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult GetQuestionsList()
+        {
             var result = _askUC.ShowAllQuestions();
             return View(result);
         }
-
         public IActionResult Privacy()
         {
             return View();
