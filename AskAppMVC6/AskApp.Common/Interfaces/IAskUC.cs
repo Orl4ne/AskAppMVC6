@@ -8,7 +8,7 @@ namespace AskApp.Common.Interfaces
     public interface IAskUC
     {
         List<QuestionTO> ShowAllQuestions();
-        List<QuestionTO> ShowMyQuestions();
+        List<QuestionTO> ShowMyQuestions(int UserId);
         QuestionTO AskAQuestion(QuestionTO Question);
         QuestionTO ShowThisQuestion(int QuestionId);
         AnswerTO AnsweringQuestion(int QuestionId, AnswerTO Answer);
