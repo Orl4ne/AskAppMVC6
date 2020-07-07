@@ -7,6 +7,8 @@ namespace AskApp.Identity
 {
     public class AskAppIdentityUser : IdentityUser<int>
     {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public AskAppIdentityUser() : base()
         { }
 

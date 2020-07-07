@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AskApp.Ask.DAL.Migrations
 {
     [DbContext(typeof(AskContext))]
-    [Migration("20200702081232_Initial")]
+    [Migration("20200707120001_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,7 +27,7 @@ namespace AskApp.Ask.DAL.Migrations
                     b.Property<int?>("AssociatedQuestionId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("AuthorId")
+                    b.Property<int>("AuthorId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Message")
@@ -37,26 +37,7 @@ namespace AskApp.Ask.DAL.Migrations
 
                     b.HasIndex("AssociatedQuestionId");
 
-                    b.HasIndex("AuthorId");
-
                     b.ToTable("Answers");
-                });
-
-            modelBuilder.Entity("AskApp.Ask.DAL.Entities.AskUserEF", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AskUsers");
                 });
 
             modelBuilder.Entity("AskApp.Ask.DAL.Entities.QuestionEF", b =>
@@ -65,7 +46,7 @@ namespace AskApp.Ask.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("AuthorId")
+                    b.Property<int>("AuthorId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Date")
@@ -82,8 +63,6 @@ namespace AskApp.Ask.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorId");
-
                     b.ToTable("Questions");
                 });
 
@@ -92,17 +71,6 @@ namespace AskApp.Ask.DAL.Migrations
                     b.HasOne("AskApp.Ask.DAL.Entities.QuestionEF", "AssociatedQuestion")
                         .WithMany()
                         .HasForeignKey("AssociatedQuestionId");
-
-                    b.HasOne("AskApp.Ask.DAL.Entities.AskUserEF", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
-                });
-
-            modelBuilder.Entity("AskApp.Ask.DAL.Entities.QuestionEF", b =>
-                {
-                    b.HasOne("AskApp.Ask.DAL.Entities.AskUserEF", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
                 });
 #pragma warning restore 612, 618
         }

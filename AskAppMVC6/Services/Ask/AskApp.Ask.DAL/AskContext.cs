@@ -10,6 +10,9 @@ namespace AskApp.Ask.DAL
     [ExcludeFromCodeCoverage]
     public class AskContext : DbContext
     {
+        public AskContext( )
+        {
+        }
         public AskContext(DbContextOptions<AskContext> options)
             : base(options)
         {
