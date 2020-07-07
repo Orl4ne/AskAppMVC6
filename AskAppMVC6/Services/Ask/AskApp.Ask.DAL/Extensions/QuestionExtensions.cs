@@ -18,7 +18,7 @@ namespace AskApp.Ask.DAL.Extensions
                 Id = question.Id,
                 AuthorId = question.AuthorId,
                 Date = question.Date,
-                IsArchived = question.IsArchived,
+                IsResolved = question.IsResolved,
                 Message = question.Message,
                 Title = question.Title,
             };
@@ -34,7 +34,7 @@ namespace AskApp.Ask.DAL.Extensions
                 Id = question.Id,
                 AuthorId = question.AuthorId,
                 Date = question.Date,
-                IsArchived = question.IsArchived,
+                IsResolved = question.IsResolved,
                 Message = question.Message,
                 Title = question.Title,
             };
@@ -50,7 +50,7 @@ namespace AskApp.Ask.DAL.Extensions
             questionToModify.Id = question.Id;
             questionToModify.AuthorId = question.AuthorId;
             questionToModify.Date = question.Date;
-            questionToModify.IsArchived = question.IsArchived;
+            questionToModify.IsResolved = question.IsResolved;
             questionToModify.Message = question.Message;
             questionToModify.Title = question.Title;
 

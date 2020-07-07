@@ -24,16 +24,16 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
             IQuestionRepository questionRepository = new QuestionRepository(context);
             //ACT
             DateTime date = DateTime.Now;
-            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
+            var question = new QuestionTO { IsResolved = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
             var result = questionRepository.Create(question);
             context.SaveChanges();
             //ACT
-            result.IsArchived = true;
+            result.IsResolved = true;
             var test = questionRepository.Modify(result);
             context.SaveChanges();
 
             //ASSERT
-            Assert.AreEqual(true, test.IsArchived);
+            Assert.AreEqual(true, test.IsResolved);
 
         }
 
@@ -47,7 +47,7 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
             IQuestionRepository questionRepository = new QuestionRepository(context);
 
             DateTime date = DateTime.Now;
-            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
+            var question = new QuestionTO { IsResolved = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
             
             Assert.ThrowsException<ArgumentException>(() => questionRepository.Modify(question));
         }
@@ -74,7 +74,7 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
             IQuestionRepository questionRepository = new QuestionRepository(context);
 
             DateTime date = DateTime.Now;
-            var question = new QuestionTO {Id=16783, IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
+            var question = new QuestionTO {Id=16783, IsResolved = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
             Assert.ThrowsException<KeyNotFoundException>(() => questionRepository.Modify(question));
         }
     }

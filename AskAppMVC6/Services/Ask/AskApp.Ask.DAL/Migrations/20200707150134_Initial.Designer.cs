@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AskApp.Ask.DAL.Migrations
 {
     [DbContext(typeof(AskContext))]
-    [Migration("20200707120001_Initial")]
+    [Migration("20200707150134_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,7 +52,7 @@ namespace AskApp.Ask.DAL.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("IsArchived")
+                    b.Property<bool>("IsResolved")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Message")

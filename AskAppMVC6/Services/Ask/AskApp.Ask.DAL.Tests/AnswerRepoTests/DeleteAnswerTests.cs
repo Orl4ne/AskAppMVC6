@@ -27,9 +27,9 @@ namespace AskApp.Ask.DAL.Tests.AnswerRepoTests
             //ACT
             
             DateTime date = DateTime.Now;
-            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
-            var question2 = new QuestionTO { IsArchived = false, Message = "Comment créer un projet MVC 6", Title = "MVC6", Date = date, AuthorId = 2 };
-            var question3 = new QuestionTO { IsArchived = false, Message = "Comment faire boucle foreach", Title = "foreach", Date = date, AuthorId = 2 };
+            var question = new QuestionTO { IsResolved = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
+            var question2 = new QuestionTO { IsResolved = false, Message = "Comment créer un projet MVC 6", Title = "MVC6", Date = date, AuthorId = 2 };
+            var question3 = new QuestionTO { IsResolved = false, Message = "Comment faire boucle foreach", Title = "foreach", Date = date, AuthorId = 2 };
             var addedQuestion = questionRepository.Create(question);
             var addedQuestion2 = questionRepository.Create(question2);
             var addedQuestion3 = questionRepository.Create(question3);
@@ -74,7 +74,7 @@ namespace AskApp.Ask.DAL.Tests.AnswerRepoTests
 
             //ACT
             DateTime date = DateTime.Now;
-            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
+            var question = new QuestionTO { IsResolved = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
             var addedQuestion = questionRepository.Create(question);
             context.SaveChanges();
             var answer = new AnswerTO { Message = "En fait, c'est facile il faut toujorus faire des tests", AuthorId = 2, AssociatedQuestion = addedQuestion, };

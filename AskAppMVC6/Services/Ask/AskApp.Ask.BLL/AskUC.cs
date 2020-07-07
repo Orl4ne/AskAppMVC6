@@ -26,7 +26,7 @@ namespace AskApp.Ask.BLL
         public QuestionTO MarkMyQuestionAsResolved(int QuestionId)
         {
             var question = questionRepository.GetById(QuestionId);
-            question.IsArchived = true;
+            question.IsResolved = true;
             return questionRepository.Modify(question);
         }
 

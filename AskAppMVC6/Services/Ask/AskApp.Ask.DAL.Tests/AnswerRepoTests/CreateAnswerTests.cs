@@ -28,7 +28,7 @@ namespace AskApp.Ask.DAL.Tests.AnswerRepoTests
             //ACT
             
             DateTime date = DateTime.Now;
-            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
+            var question = new QuestionTO { IsResolved = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
             var addedQuestion = questionRepository.Create(question);
             context.SaveChanges();
             var answer = new AnswerTO { Message = "En fait, c'est facile il faut toujorus faire des tests", AuthorId = 2, AssociatedQuestion = addedQuestion, };
@@ -66,7 +66,7 @@ namespace AskApp.Ask.DAL.Tests.AnswerRepoTests
 
             
             DateTime date = DateTime.Now;
-            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
+            var question = new QuestionTO { IsResolved = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
             var addedQuestion = questionRepository.Create(question);
             context.SaveChanges();
             var answer = new AnswerTO { Message = "En fait, c'est facile il faut toujorus faire des tests", AuthorId = 2, AssociatedQuestion = addedQuestion, };

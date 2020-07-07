@@ -14,14 +14,14 @@ namespace AskApp.Ask.BLL.Tests
         public AnswerTO MockAnswer()
         {
             DateTime date = DateTime.Now;
-            var question = new QuestionTO { Id = 1, IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
+            var question = new QuestionTO { Id = 1, IsResolved = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
             
             return new AnswerTO { Message = "En fait, c'est facile il faut toujorus faire des tests", AuthorId = 2, AssociatedQuestion = question, };
         }
         public QuestionTO MockQuestion()
         {
             DateTime date = DateTime.Now;
-            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test!", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
+            var question = new QuestionTO { IsResolved = false, Message = "Je n'arrive pas à faire un test!", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
 
             return question;
         }
@@ -36,7 +36,7 @@ namespace AskApp.Ask.BLL.Tests
                           .Returns(MockQuestion);
 
             DateTime date = DateTime.Now;
-            var question = new QuestionTO {IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
+            var question = new QuestionTO {IsResolved = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
             var answer2 =  new AnswerTO { Message = "En fait, c'est facile il faut toujorus faire des tests", AuthorId = 2, AssociatedQuestion = question, };
 
             var askUC = new AskUC(mockAnswerRepository.Object, mockQuestionRepository.Object);

@@ -62,7 +62,7 @@ namespace AskApp.Ask.DAL.Repositories
         public List<QuestionTO> GetAll()
         {
             var list = askContext.Questions.AsEnumerable()
-                .Where(r=>r.IsArchived!= true)
+                .Where(r=>r.IsResolved!= true)
                 ?.Select(x => x.ToTransferObject())
                 .ToList();
             if (!list.Any())

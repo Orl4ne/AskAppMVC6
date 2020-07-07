@@ -1,4 +1,5 @@
-﻿@model AskApp.Common.TOs.QuestionTO
+﻿@model UserQuestionVM
+
 
 @{
     ViewData["Title"] = "Details";
@@ -11,39 +12,45 @@
     <h4>QuestionTO</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.Id)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Question.Id)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.Title)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Question.Title)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Message)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.Message)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Message)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Question.Message)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsArchived)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.IsResolved)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsArchived)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Question.IsResolved)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Date)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Question.Date)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Date)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Question.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.UserName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.UserName)
         </dd>
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Question.Id }) |
     <a asp-action="Index">Back to List</a>
 </div>

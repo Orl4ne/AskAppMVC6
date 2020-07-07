@@ -10,7 +10,7 @@ namespace AskApp.Common.TOs
         public int AuthorId { get; set; }
         public string Title { get; set; }
         public string Message { get; set; }
-        public bool IsArchived { get; set; }
+        public bool IsResolved { get; set; }
         public DateTime Date { get; set; }
     }
 }

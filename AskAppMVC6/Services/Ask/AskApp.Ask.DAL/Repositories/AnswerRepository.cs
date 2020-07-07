@@ -34,7 +34,7 @@ namespace AskApp.Ask.DAL.Repositories
                 return entity;
             }
             var answerEF = entity.ToEF();
-            answerEF.AssociatedQuestion = askContext.Questions.First(x => x.Id == entity.AssociatedQuestion.Id && entity.AssociatedQuestion.IsArchived != true);
+            answerEF.AssociatedQuestion = askContext.Questions.First(x => x.Id == entity.AssociatedQuestion.Id && entity.AssociatedQuestion.IsResolved != true);
 
             var result = askContext.Answers.Add(answerEF);
             askContext.SaveChanges();
@@ -62,7 +62,7 @@ namespace AskApp.Ask.DAL.Repositories
         public List<AnswerTO> GetAll()
         {
             var list = askContext.Answers.AsEnumerable()
-                .Where(r => r.AssociatedQuestion.IsArchived != true)
+                .Where(r => r.AssociatedQuestion.IsResolved != true)
                 ?.Select(x => x.ToTransferObject())
                 .ToList();
             if (!list.Any())
@@ -78,7 +78,7 @@ namespace AskApp.Ask.DAL.Repositories
             {
                 throw new ArgumentException("Answer not found, invalid Id");
             }
-            return askContext.Answers.FirstOrDefault(x => x.Id == id && x.AssociatedQuestion.IsArchived != true).ToTransferObject();
+            return askContext.Answers.FirstOrDefault(x => x.Id == id && x.AssociatedQuestion.IsResolved != true).ToTransferObject();
         }
 
         public AnswerTO Modify(AnswerTO entity)
@@ -96,7 +96,7 @@ namespace AskApp.Ask.DAL.Repositories
                 throw new KeyNotFoundException($"Update(AnswerTO) Can't find Answer to update.");
             }
 
-            var editedEntity = askContext.Answers.FirstOrDefault(e => e.Id == entity.Id && e.AssociatedQuestion.IsArchived != true);
+            var editedEntity = askContext.Answers.FirstOrDefault(e => e.Id == entity.Id && e.AssociatedQuestion.IsResolved != true);
             if (editedEntity != default)
             {
                 entity.ToTrackedEF(editedEntity);

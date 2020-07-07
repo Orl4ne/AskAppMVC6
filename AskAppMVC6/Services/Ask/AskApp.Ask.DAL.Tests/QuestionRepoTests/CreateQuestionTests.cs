@@ -25,7 +25,7 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
             IQuestionRepository questionRepository = new QuestionRepository(context);
             //ACT
             DateTime date = DateTime.Now;
-            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
+            var question = new QuestionTO { IsResolved = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
             var result = questionRepository.Create(question);
             //ASSERT
             Assert.IsNotNull(result);
@@ -33,7 +33,7 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
             Assert.AreEqual("Je n'arrive pas à faire un test", result.Message);
             Assert.AreEqual("Problème avec Tests", result.Title);
             Assert.AreEqual(date, result.Date);
-            Assert.AreEqual(false, result.IsArchived);
+            Assert.AreEqual(false, result.IsResolved);
             Assert.AreEqual(1, result.AuthorId);
         }
 
@@ -59,7 +59,7 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
             IQuestionRepository questionRepository = new QuestionRepository(context);
 
             DateTime date = DateTime.Now;
-            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
+            var question = new QuestionTO { IsResolved = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
             var result = questionRepository.Create(question);
             context.SaveChanges();
             //ACT

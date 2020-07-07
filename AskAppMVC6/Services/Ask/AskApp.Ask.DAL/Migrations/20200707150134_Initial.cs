@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AskApp.Ask.DAL.Migrations
 {
-    [ExcludeFromCodeCoverage]
     public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +16,7 @@ namespace AskApp.Ask.DAL.Migrations
                     AuthorId = table.Column<int>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Message = table.Column<string>(nullable: true),
-                    IsArchived = table.Column<bool>(nullable: false),
+                    IsResolved = table.Column<bool>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>

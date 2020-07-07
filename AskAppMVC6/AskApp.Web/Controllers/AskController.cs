@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AskApp.Common.Interfaces;
 using AskApp.Common.TOs;
 using AskApp.Identity;
+using AskApp.Web.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -31,20 +32,35 @@ namespace AskApp.Web.Controllers
         public IActionResult Index()
         {
             var questions = _askUC.ShowAllQuestions();
-            return View(questions);
+            var userQuestions = new List<UserQuestionVM>();
+            foreach (var qst in questions)
+            {
+                var userQuestionVM = new UserQuestionVM
+                {
+                    User = _userManager.FindByIdAsync(qst.AuthorId.ToString()).Result,
+                    Question = qst,
+                };
+                userQuestions.Add(userQuestionVM);
+            }
+            return View(userQuestions);
         }
 
         // GET: AskController/Details/5
         public ActionResult Details(int id)
         {
-            var question = _askUC.ShowThisQuestion(id);
-            return View(question);
+            var userQuestionVM = new UserQuestionVM
+            {
+                User = _userManager.GetUserAsync(User).Result,
+                Question = _askUC.ShowThisQuestion(id)
+            };
+
+            return View(userQuestionVM);
         }
 
         // GET: AskController/Create
         public ActionResult CreateQuestion()
         {
-            return View();
+            return View(); 
         }
 
         // POST: AskController/Create
@@ -52,17 +68,17 @@ namespace AskApp.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateQuestion(QuestionTO question)
         {
-            //try
-            //{
+            try
+            {
                 var currentUser = _userManager.GetUserAsync(User).Result;
                 question.AuthorId = currentUser.Id;
                 _askUC.AskAQuestion(question);
                 return RedirectToAction(nameof(Index));
-            //}
-            //catch
-            //{
-            //    return View();
-            //}
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: AskController/Edit/5
