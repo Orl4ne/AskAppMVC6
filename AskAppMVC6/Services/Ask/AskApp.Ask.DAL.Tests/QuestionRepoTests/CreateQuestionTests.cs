@@ -22,14 +22,10 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
                 .UseInMemoryDatabase(databaseName: MethodBase.GetCurrentMethod().Name)
                 .Options;
             using var context = new AskContext(options);
-            IAskUserRepository askUserRepository = new AskUserRepository(context);
             IQuestionRepository questionRepository = new QuestionRepository(context);
             //ACT
-            var user = new AskUserTO { FirstName = "Jean-Claude", LastName = "DuPet" };
-            var addedUser = askUserRepository.Create(user);
-            context.SaveChanges();
             DateTime date = DateTime.Now;
-            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author = addedUser };
+            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
             var result = questionRepository.Create(question);
             //ASSERT
             Assert.IsNotNull(result);
@@ -38,7 +34,7 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
             Assert.AreEqual("Problème avec Tests", result.Title);
             Assert.AreEqual(date, result.Date);
             Assert.AreEqual(false, result.IsArchived);
-            Assert.AreEqual(1, result.Author.Id);
+            Assert.AreEqual(1, result.AuthorId);
         }
 
         [TestMethod]
@@ -60,14 +56,10 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
             .UseInMemoryDatabase(databaseName: MethodBase.GetCurrentMethod().Name)
             .Options;
             using var context = new AskContext(options);
-            IAskUserRepository askUserRepository = new AskUserRepository(context);
             IQuestionRepository questionRepository = new QuestionRepository(context);
 
-            var user = new AskUserTO { FirstName = "Jean-Claude", LastName = "DuPet" };
-            var addedUser = askUserRepository.Create(user);
-            context.SaveChanges();
             DateTime date = DateTime.Now;
-            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author = addedUser };
+            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
             var result = questionRepository.Create(question);
             context.SaveChanges();
             //ACT

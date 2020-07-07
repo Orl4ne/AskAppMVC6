@@ -16,14 +16,13 @@ namespace AskApp.Ask.DAL.Tests.ExtensionsTests
         {
             //ARRANGE
             DateTime date = DateTime.Now;
-            var user = new AskUserEF { Id = 4, FirstName = "Jean-Claude", LastName = "DuPet" };
-            var question = new QuestionEF { Id = 1, IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author=user };
+            var question = new QuestionEF { Id = 1, IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId=1 };
             //ACT
             var result = question.ToTransferObject();
             //Assert
             Assert.AreEqual(question.Id, result.Id);
             Assert.AreEqual(question.IsArchived, result.IsArchived);
-            Assert.AreEqual(question.Author, result.Author.ToTrackedEF(question.Author));
+            Assert.AreEqual(question.AuthorId, result.AuthorId);
             Assert.AreEqual(question.Title, result.Title);
             Assert.AreEqual(question.Date, result.Date);
             Assert.AreEqual(question.Message, result.Message);
@@ -42,14 +41,13 @@ namespace AskApp.Ask.DAL.Tests.ExtensionsTests
         {
             //ARRANGE
             DateTime date = DateTime.Now;
-            var user = new AskUserTO { Id = 4, FirstName = "Jean-Claude", LastName = "DuPet" };
-            var question = new QuestionTO { Id = 1, IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author = user };
+            var question = new QuestionTO { Id = 1, IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
             //ACT
             var result = question.ToEF();
             //Assert
             Assert.AreEqual(question.Id, result.Id);
             Assert.AreEqual(question.IsArchived, result.IsArchived);
-            Assert.AreEqual(question.Author.ToTrackedEF(result.Author), result.Author);
+            Assert.AreEqual(question.AuthorId, result.AuthorId);
             Assert.AreEqual(question.Title, result.Title);
             Assert.AreEqual(question.Date, result.Date);
             Assert.AreEqual(question.Message, result.Message);
@@ -79,8 +77,7 @@ namespace AskApp.Ask.DAL.Tests.ExtensionsTests
             //ARRANGE
             QuestionTO question = null;
             DateTime date = DateTime.Now;
-            var user = new AskUserEF { Id = 4, FirstName = "Jean-Claude", LastName = "DuPet" };
-            var questionToModify = new QuestionEF { Id = 1, IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author = user };
+            var questionToModify = new QuestionEF { Id = 1, IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
             //ACT
             Assert.ThrowsException<ArgumentNullException>(() => question.ToTrackedEF(questionToModify));
         }

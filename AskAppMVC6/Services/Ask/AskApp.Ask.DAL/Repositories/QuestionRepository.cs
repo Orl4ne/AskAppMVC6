@@ -35,7 +35,6 @@ namespace AskApp.Ask.DAL.Repositories
                 return entity;
             }
             var questionEF = entity.ToEF();
-            questionEF.Author = askContext.AskUsers.First(x => x.Id == entity.Author.Id);
 
             var result = askContext.Questions.Add(questionEF);
             askContext.SaveChanges();

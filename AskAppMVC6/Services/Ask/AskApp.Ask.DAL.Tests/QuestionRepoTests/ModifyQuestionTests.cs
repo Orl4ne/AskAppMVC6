@@ -21,14 +21,10 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
                 .UseInMemoryDatabase(databaseName: MethodBase.GetCurrentMethod().Name)
                 .Options;
             using var context = new AskContext(options);
-            IAskUserRepository askUserRepository = new AskUserRepository(context);
             IQuestionRepository questionRepository = new QuestionRepository(context);
             //ACT
-            var user = new AskUserTO { FirstName = "Jean-Claude", LastName = "DuPet" };
-            var addedUser = askUserRepository.Create(user);
-            context.SaveChanges();
             DateTime date = DateTime.Now;
-            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author = addedUser };
+            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
             var result = questionRepository.Create(question);
             context.SaveChanges();
             //ACT
@@ -48,14 +44,10 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
                     .UseInMemoryDatabase(databaseName: MethodBase.GetCurrentMethod().Name)
                     .Options;
             using var context = new AskContext(options);
-            IAskUserRepository askUserRepository = new AskUserRepository(context);
             IQuestionRepository questionRepository = new QuestionRepository(context);
 
-            var user = new AskUserTO { FirstName = "Jean-Claude", LastName = "DuPet" };
-            var addedUser = askUserRepository.Create(user);
-            context.SaveChanges();
             DateTime date = DateTime.Now;
-            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author = addedUser };
+            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
             
             Assert.ThrowsException<ArgumentException>(() => questionRepository.Modify(question));
         }
@@ -67,7 +59,6 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
                     .UseInMemoryDatabase(databaseName: MethodBase.GetCurrentMethod().Name)
                     .Options;
             using var context = new AskContext(options);
-            IAskUserRepository askUserRepository = new AskUserRepository(context);
             IQuestionRepository questionRepository = new QuestionRepository(context);
 
             Assert.ThrowsException<ArgumentNullException>(() => questionRepository.Modify(null));
@@ -80,14 +71,10 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
                     .UseInMemoryDatabase(databaseName: MethodBase.GetCurrentMethod().Name)
                     .Options;
             using var context = new AskContext(options);
-            IAskUserRepository askUserRepository = new AskUserRepository(context);
             IQuestionRepository questionRepository = new QuestionRepository(context);
 
-            var user = new AskUserTO { FirstName = "Jean-Claude", LastName = "DuPet" };
-            var addedUser = askUserRepository.Create(user);
-            context.SaveChanges();
             DateTime date = DateTime.Now;
-            var question = new QuestionTO {Id=16783, IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author = addedUser };
+            var question = new QuestionTO {Id=16783, IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
             Assert.ThrowsException<KeyNotFoundException>(() => questionRepository.Modify(question));
         }
     }

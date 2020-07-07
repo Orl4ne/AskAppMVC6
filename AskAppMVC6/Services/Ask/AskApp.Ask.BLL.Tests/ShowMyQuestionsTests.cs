@@ -14,12 +14,10 @@ namespace AskApp.Ask.BLL.Tests
     {
         public List<QuestionTO> MockListOfQuestions()
         {
-            var user = new AskUserTO {Id=1, FirstName = "Jean-Claude", LastName = "DuPet" };
-            var user2 = new AskUserTO {Id=2, FirstName = "Martine", LastName = "ALaPlage" };
             DateTime date = DateTime.Now;
-            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test!", Title = "Problème avec Tests", Date = date, Author = user };
-            var question2 = new QuestionTO { IsArchived = false, Message = "Comment créer un projet MVC 6?", Title = "MVC6", Date = date, Author = user2 };
-            var question3 = new QuestionTO { IsArchived = false, Message = "Comment faire boucle foreach?", Title = "foreach", Date = date, Author = user2 };
+            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test!", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
+            var question2 = new QuestionTO { IsArchived = false, Message = "Comment créer un projet MVC 6?", Title = "MVC6", Date = date, AuthorId = 2 };
+            var question3 = new QuestionTO { IsArchived = false, Message = "Comment faire boucle foreach?", Title = "foreach", Date = date, AuthorId = 2 };
 
             return new List<QuestionTO> { question, question2, question3 };
         }
@@ -29,9 +27,8 @@ namespace AskApp.Ask.BLL.Tests
             var mockQuestionRepository = new Mock<IQuestionRepository>();
             mockQuestionRepository.Setup(x => x.GetAll()).Returns(MockListOfQuestions());
             var mockAnswerRepository = new Mock<IAnswerRepository>();
-            var mockAskUserRepository = new Mock<IAskUserRepository>();
 
-            var askUC = new AskUC(mockAnswerRepository.Object, mockQuestionRepository.Object, mockAskUserRepository.Object);
+            var askUC = new AskUC(mockAnswerRepository.Object, mockQuestionRepository.Object);
             var questions = askUC.ShowMyQuestions(2);
 
             Assert.AreEqual(2, questions.Count());

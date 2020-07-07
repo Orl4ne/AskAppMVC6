@@ -34,7 +34,6 @@ namespace AskApp.Ask.DAL.Repositories
                 return entity;
             }
             var answerEF = entity.ToEF();
-            answerEF.Author = askContext.AskUsers.First(x => x.Id == entity.Author.Id);
             answerEF.AssociatedQuestion = askContext.Questions.First(x => x.Id == entity.AssociatedQuestion.Id && entity.AssociatedQuestion.IsArchived != true);
 
             var result = askContext.Answers.Add(answerEF);

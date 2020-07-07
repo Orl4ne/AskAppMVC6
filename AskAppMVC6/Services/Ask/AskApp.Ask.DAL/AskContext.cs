@@ -35,6 +35,5 @@ namespace AskApp.Ask.DAL
 
         public DbSet<QuestionEF> Questions { get; set; }
         public DbSet<AnswerEF> Answers { get; set; }
-        public DbSet<AskUserEF> AskUsers { get; set; }
     }
 }

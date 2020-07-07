@@ -22,21 +22,16 @@ namespace AskApp.Ask.DAL.Tests.AnswerRepoTests
                 .UseInMemoryDatabase(databaseName: MethodBase.GetCurrentMethod().Name)
                 .Options;
             using var context = new AskContext(options);
-            IAskUserRepository askUserRepository = new AskUserRepository(context);
             IQuestionRepository questionRepository = new QuestionRepository(context);
             IAnswerRepository answerRepository = new AnswerRepository(context);
 
             //ACT
-            var user = new AskUserTO { FirstName = "Jean-Claude", LastName = "DuPet" };
-            var user2 = new AskUserTO { FirstName = "Martine", LastName = "ALaPlage" };
-            var addedUser = askUserRepository.Create(user);
-            var addedUser2 = askUserRepository.Create(user2);
-            context.SaveChanges();
+            
             DateTime date = DateTime.Now;
-            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author = addedUser };
+            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
             var addedQuestion = questionRepository.Create(question);
             context.SaveChanges();
-            var answer = new AnswerTO { Message = "En fait, c'est facile il faut toujorus faire des tests", Author = addedUser2, AssociatedQuestion = addedQuestion, };
+            var answer = new AnswerTO { Message = "En fait, c'est facile il faut toujorus faire des tests", AuthorId = 2, AssociatedQuestion = addedQuestion, };
             var result = answerRepository.Create(answer);
             context.SaveChanges();
 
@@ -44,7 +39,7 @@ namespace AskApp.Ask.DAL.Tests.AnswerRepoTests
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Id);
             Assert.AreEqual("En fait, c'est facile il faut toujorus faire des tests", result.Message);
-            Assert.AreEqual(2, result.Author.Id);
+            Assert.AreEqual(2, result.AuthorId);
         }
 
         [TestMethod]
@@ -66,20 +61,15 @@ namespace AskApp.Ask.DAL.Tests.AnswerRepoTests
             .UseInMemoryDatabase(databaseName: MethodBase.GetCurrentMethod().Name)
             .Options;
             using var context = new AskContext(options);
-            IAskUserRepository askUserRepository = new AskUserRepository(context);
             IQuestionRepository questionRepository = new QuestionRepository(context);
             IAnswerRepository answerRepository = new AnswerRepository(context);
 
-            var user = new AskUserTO { FirstName = "Jean-Claude", LastName = "DuPet" };
-            var user2 = new AskUserTO { FirstName = "Martine", LastName = "ALaPlage" };
-            var addedUser = askUserRepository.Create(user);
-            var addedUser2 = askUserRepository.Create(user2);
-            context.SaveChanges();
+            
             DateTime date = DateTime.Now;
-            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author = addedUser };
+            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
             var addedQuestion = questionRepository.Create(question);
             context.SaveChanges();
-            var answer = new AnswerTO { Message = "En fait, c'est facile il faut toujorus faire des tests", Author = addedUser2, AssociatedQuestion = addedQuestion, };
+            var answer = new AnswerTO { Message = "En fait, c'est facile il faut toujorus faire des tests", AuthorId = 2, AssociatedQuestion = addedQuestion, };
             var result = answerRepository.Create(answer);
             context.SaveChanges();
             //ACT

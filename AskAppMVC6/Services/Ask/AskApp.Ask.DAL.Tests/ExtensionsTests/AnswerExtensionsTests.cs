@@ -16,14 +16,12 @@ namespace AskApp.Ask.DAL.Tests.ExtensionsTests
         {
             //ARRANGE
             DateTime date = DateTime.Now;
-            var user = new AskUserEF { Id = 4, FirstName = "Jean-Claude", LastName = "DuPet" };
-            var user2 = new AskUserEF { Id = 2, FirstName = "Martine", LastName = "ALaPlage" };
-            var question = new QuestionEF { Id = 1, IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author = user };
-            var answer = new AnswerEF { Message = "En fait, c'est facile il faut toujorus faire des tests", Author = user2,AssociatedQuestion=question, };
+            var question = new QuestionEF { Id = 1, IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
+            var answer = new AnswerEF { Message = "En fait, c'est facile il faut toujorus faire des tests", AuthorId = 2, AssociatedQuestion=question, };
             //ACT
             var result = answer.ToTransferObject();
             //Assert
-            Assert.AreEqual(answer.Author, result.Author.ToTrackedEF(answer.Author));
+            Assert.AreEqual(answer.AuthorId, result.AuthorId);
             Assert.AreEqual(answer.Message, result.Message);
         }
 
@@ -40,14 +38,12 @@ namespace AskApp.Ask.DAL.Tests.ExtensionsTests
         {
             //ARRANGE
             DateTime date = DateTime.Now;
-            var user = new AskUserTO { Id = 4, FirstName = "Jean-Claude", LastName = "DuPet" };
-            var user2 = new AskUserTO { Id = 2, FirstName = "Martine", LastName = "ALaPlage" };
-            var question = new QuestionTO { Id = 1, IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author = user };
-            var answer = new AnswerTO { Message = "En fait, c'est facile il faut toujorus faire des tests", Author = user2, AssociatedQuestion = question, };
+            var question = new QuestionTO { Id = 1, IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
+            var answer = new AnswerTO { Message = "En fait, c'est facile il faut toujorus faire des tests", AuthorId = 2, AssociatedQuestion = question, };
             //ACT
             var result = answer.ToEF();
             //Assert
-            Assert.AreEqual(answer.Author.ToTrackedEF(result.Author), result.Author);
+            Assert.AreEqual(answer.AuthorId, result.AuthorId);
             Assert.AreEqual(answer.Message, result.Message);
         }
 
@@ -76,10 +72,8 @@ namespace AskApp.Ask.DAL.Tests.ExtensionsTests
             //ARRANGE
             AnswerTO answer = null;
             DateTime date = DateTime.Now;
-            var user = new AskUserEF { Id = 4, FirstName = "Jean-Claude", LastName = "DuPet" };
-            var user2 = new AskUserEF { Id = 2, FirstName = "Martine", LastName = "ALaPlage" };
-            var question = new QuestionEF { Id = 1, IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author = user };
-            var answerToModify = new AnswerEF { Message = "En fait, c'est facile il faut toujorus faire des tests", Author = user2, AssociatedQuestion = question, };
+            var question = new QuestionEF { Id = 1, IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
+            var answerToModify = new AnswerEF { Message = "En fait, c'est facile il faut toujorus faire des tests", AuthorId = 2, AssociatedQuestion = question, };
             //ACT
             Assert.ThrowsException<ArgumentNullException>(() => answer.ToTrackedEF(answerToModify));
         }

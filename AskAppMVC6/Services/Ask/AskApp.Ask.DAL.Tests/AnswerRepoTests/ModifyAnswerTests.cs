@@ -21,27 +21,19 @@ namespace AskApp.Ask.DAL.Tests.AnswerRepoTests
                 .UseInMemoryDatabase(databaseName: MethodBase.GetCurrentMethod().Name)
                 .Options;
             using var context = new AskContext(options);
-            IAskUserRepository askUserRepository = new AskUserRepository(context);
             IQuestionRepository questionRepository = new QuestionRepository(context);
             IAnswerRepository answerRepository = new AnswerRepository(context);
 
             //ACT
-            var user = new AskUserTO { FirstName = "Jean-Claude", LastName = "DuPet" };
-            var user2 = new AskUserTO { FirstName = "Martine", LastName = "ALaPlage" };
-            var user3 = new AskUserTO { FirstName = "Steve", LastName = "Pantelon" };
-            var addedUser = askUserRepository.Create(user);
-            var addedUser2 = askUserRepository.Create(user2);
-            var addedUser3 = askUserRepository.Create(user3);
-            context.SaveChanges();
             DateTime date = DateTime.Now;
-            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author = addedUser };
-            var question2 = new QuestionTO { IsArchived = false, Message = "Comment créer un projet MVC 6", Title = "MVC6", Date = date, Author = addedUser2 };
-            var question3 = new QuestionTO { IsArchived = false, Message = "Comment faire boucle foreach", Title = "foreach", Date = date, Author = addedUser2 };
+            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
+            var question2 = new QuestionTO { IsArchived = false, Message = "Comment créer un projet MVC 6", Title = "MVC6", Date = date, AuthorId = 2 };
+            var question3 = new QuestionTO { IsArchived = false, Message = "Comment faire boucle foreach", Title = "foreach", Date = date, AuthorId = 2 };
             var addedQuestion = questionRepository.Create(question);
             var addedQuestion2 = questionRepository.Create(question2);
             var addedQuestion3 = questionRepository.Create(question3);
             context.SaveChanges();
-            var answer = new AnswerTO { Message = "En fait, c'est facile il faut toujorus faire des tests", Author = addedUser2, AssociatedQuestion = addedQuestion, };
+            var answer = new AnswerTO { Message = "En fait, c'est facile il faut toujorus faire des tests", AuthorId = 2, AssociatedQuestion = addedQuestion, };
             var result = answerRepository.Create(answer);
             context.SaveChanges();
             //ACT
@@ -60,21 +52,15 @@ namespace AskApp.Ask.DAL.Tests.AnswerRepoTests
                     .UseInMemoryDatabase(databaseName: MethodBase.GetCurrentMethod().Name)
                     .Options;
             using var context = new AskContext(options);
-            IAskUserRepository askUserRepository = new AskUserRepository(context);
             IQuestionRepository questionRepository = new QuestionRepository(context);
             IAnswerRepository answerRepository = new AnswerRepository(context);
 
             //ACT
-            var user = new AskUserTO { FirstName = "Jean-Claude", LastName = "DuPet" };
-            var user2 = new AskUserTO { FirstName = "Martine", LastName = "ALaPlage" };
-            var addedUser = askUserRepository.Create(user);
-            var addedUser2 = askUserRepository.Create(user2);
-            context.SaveChanges();
             DateTime date = DateTime.Now;
-            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author = addedUser };
+            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
             var addedQuestion = questionRepository.Create(question);
             context.SaveChanges();
-            var answer = new AnswerTO { Message = "En fait, c'est facile il faut toujorus faire des tests", Author = addedUser2, AssociatedQuestion = addedQuestion, };
+            var answer = new AnswerTO { Message = "En fait, c'est facile il faut toujorus faire des tests", AuthorId = 2, AssociatedQuestion = addedQuestion, };
 
             Assert.ThrowsException<ArgumentException>(() => answerRepository.Modify(answer));
         }
@@ -98,20 +84,14 @@ namespace AskApp.Ask.DAL.Tests.AnswerRepoTests
                     .UseInMemoryDatabase(databaseName: MethodBase.GetCurrentMethod().Name)
                     .Options;
             using var context = new AskContext(options);
-            IAskUserRepository askUserRepository = new AskUserRepository(context);
             IQuestionRepository questionRepository = new QuestionRepository(context);
             IAnswerRepository answerRepository = new AnswerRepository(context);
 
-            var user = new AskUserTO { FirstName = "Jean-Claude", LastName = "DuPet" };
-            var user2 = new AskUserTO { FirstName = "Martine", LastName = "ALaPlage" };
-            var addedUser = askUserRepository.Create(user);
-            var addedUser2 = askUserRepository.Create(user2);
-            context.SaveChanges();
             DateTime date = DateTime.Now;
-            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, Author = addedUser };
+            var question = new QuestionTO { IsArchived = false, Message = "Je n'arrive pas à faire un test", Title = "Problème avec Tests", Date = date, AuthorId = 1 };
             var addedQuestion = questionRepository.Create(question);
             context.SaveChanges();
-            var answer = new AnswerTO {Id=16783, Message = "En fait, c'est facile il faut toujorus faire des tests", Author = addedUser2, AssociatedQuestion = addedQuestion, };
+            var answer = new AnswerTO {Id=16783, Message = "En fait, c'est facile il faut toujorus faire des tests", AuthorId = 2, AssociatedQuestion = addedQuestion, };
 
             Assert.ThrowsException<KeyNotFoundException>(() => answerRepository.Modify(answer));
         }

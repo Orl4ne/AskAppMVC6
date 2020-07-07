@@ -16,7 +16,7 @@ namespace AskApp.Ask.DAL.Extensions
             return new AnswerTO
             {
                 Id = answer.Id,
-                Author = answer.Author.ToTransferObject(),
+                AuthorId = answer.AuthorId,
                 Message = answer.Message,
                 AssociatedQuestion = answer.AssociatedQuestion.ToTransferObject(),
             };
@@ -30,7 +30,7 @@ namespace AskApp.Ask.DAL.Extensions
             return new AnswerEF
             {
                 Id = answer.Id,
-                Author = answer.Author.ToEF(),
+                AuthorId = answer.AuthorId,
                 Message = answer.Message,
                 AssociatedQuestion = answer.AssociatedQuestion.ToEF(),
             };
@@ -44,7 +44,7 @@ namespace AskApp.Ask.DAL.Extensions
                 throw new ArgumentNullException(nameof(answer));
 
             answerToModify.Id = answer.Id;
-            answerToModify.Author = answer.Author.ToTrackedEF(answerToModify.Author);
+            answerToModify.AuthorId = answer.AuthorId;
             answerToModify.Message = answer.Message;
             answerToModify.AssociatedQuestion = answer.AssociatedQuestion.ToTrackedEF(answerToModify.AssociatedQuestion);
 

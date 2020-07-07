@@ -68,7 +68,6 @@ namespace AskApp.Web
 
             services.AddTransient<IQuestionRepository, QuestionRepository>();
             services.AddTransient<IAnswerRepository, AnswerRepository>();
-            services.AddTransient<IAskUserRepository, AskUserRepository>();
             services.AddTransient<IAskUC, AskUC>();
         }
 

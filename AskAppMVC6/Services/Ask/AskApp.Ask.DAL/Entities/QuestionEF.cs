@@ -7,7 +7,7 @@ namespace AskApp.Ask.DAL.Entities
     public class QuestionEF
     {
         public int Id { get; set; }
-        public AskUserEF Author { get; set; }
+        public int AuthorId { get; set; }
         public string Title { get; set; }
         public string Message { get; set; }
         public bool IsArchived { get; set; }

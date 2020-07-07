@@ -37,7 +37,7 @@ namespace AskApp.Ask.BLL
 
         public List<QuestionTO> ShowMyQuestions(int UserId)
         {
-            return questionRepository.GetAll().Where(x => x.Author.Id == UserId).ToList();
+            return questionRepository.GetAll().Where(x => x.AuthorId == UserId).ToList();
         }
 
         public QuestionTO ShowThisQuestion(int QuestionId)

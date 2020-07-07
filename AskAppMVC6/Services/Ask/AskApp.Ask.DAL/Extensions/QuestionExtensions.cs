@@ -16,7 +16,7 @@ namespace AskApp.Ask.DAL.Extensions
             return new QuestionTO
             {
                 Id = question.Id,
-                Author = question.Author.ToTransferObject(),
+                AuthorId = question.AuthorId,
                 Date = question.Date,
                 IsArchived = question.IsArchived,
                 Message = question.Message,
@@ -32,7 +32,7 @@ namespace AskApp.Ask.DAL.Extensions
             return new QuestionEF
             {
                 Id = question.Id,
-                Author = question.Author.ToEF(),
+                AuthorId = question.AuthorId,
                 Date = question.Date,
                 IsArchived = question.IsArchived,
                 Message = question.Message,
@@ -48,7 +48,7 @@ namespace AskApp.Ask.DAL.Extensions
                 throw new ArgumentNullException(nameof(question));
 
             questionToModify.Id = question.Id;
-            questionToModify.Author = question.Author.ToTrackedEF(questionToModify.Author);
+            questionToModify.AuthorId = question.AuthorId;
             questionToModify.Date = question.Date;
             questionToModify.IsArchived = question.IsArchived;
             questionToModify.Message = question.Message;
