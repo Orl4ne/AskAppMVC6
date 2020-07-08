@@ -19,6 +19,7 @@ namespace AskApp.Ask.DAL.Extensions
                 AuthorId = question.AuthorId,
                 Date = question.Date,
                 IsResolved = question.IsResolved,
+                IsDeleted = question.IsDeleted,
                 Message = question.Message,
                 Title = question.Title,
             };
@@ -35,6 +36,7 @@ namespace AskApp.Ask.DAL.Extensions
                 AuthorId = question.AuthorId,
                 Date = question.Date,
                 IsResolved = question.IsResolved,
+                IsDeleted = question.IsDeleted,
                 Message = question.Message,
                 Title = question.Title,
             };
@@ -51,6 +53,7 @@ namespace AskApp.Ask.DAL.Extensions
             questionToModify.AuthorId = question.AuthorId;
             questionToModify.Date = question.Date;
             questionToModify.IsResolved = question.IsResolved;
+            questionToModify.IsDeleted = question.IsDeleted;
             questionToModify.Message = question.Message;
             questionToModify.Title = question.Title;
 

@@ -28,7 +28,8 @@ namespace AskApp.Ask.BLL
             if (UserId == Question.AuthorId)
             {
                 Question.IsDeleted = true;
-                return questionRepository.Modify(Question);
+                var modifiedEntity = questionRepository.Modify(Question);
+                return modifiedEntity;
             }
             else
 
