@@ -1,6 +1,7 @@
 ﻿using AskApp.Ask.DAL.Extensions;
 using AskApp.Common.Interfaces.IRepositories;
 using AskApp.Common.TOs;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -61,7 +62,8 @@ namespace AskApp.Ask.DAL.Repositories
 
         public List<AnswerTO> GetAll()
         {
-            var list = askContext.Answers.AsEnumerable()
+            var list = askContext.Answers
+                .Include(x=>x.AssociatedQuestion)
                 ?.Select(x => x.ToTransferObject())
                 .ToList();
             if (!list.Any())
