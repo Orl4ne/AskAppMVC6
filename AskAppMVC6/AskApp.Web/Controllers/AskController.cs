@@ -131,18 +131,18 @@ namespace AskApp.Web.Controllers
         }
         // GET: AskController/Create
         [Authorize]
-        [HttpGet("{id}")]
-        public ActionResult Answering(int id)
+        //[HttpGet("{id}")]
+        public ActionResult Answering(int questionId)
         {
-            ViewData["questionId"] = id;          
+            ViewData["questionId"] = questionId;
             return View();
         }
 
-        // POST: AskController/Create
+        // POST: AskController/CreateAnswer
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Answering([FromQuery] int questionId, AnswerTO answer)
+        public ActionResult Answering( int questionId, AnswerTO answer)
         {
             try
             {
