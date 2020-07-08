@@ -62,6 +62,7 @@ namespace AskApp.Ask.DAL.Repositories
         public List<QuestionTO> GetAll()
         {
             var list = askContext.Questions.AsEnumerable()
+                .Where(x=>x.IsDeleted !=true)
                 ?.Select(x => x.ToTransferObject())
                 .ToList();
             if (!list.Any())

@@ -14,5 +14,7 @@ namespace AskApp.Common.Interfaces
         AnswerTO AnsweringQuestion(int QuestionId, AnswerTO Answer);
         QuestionTO MarkMyQuestionAsResolved(int QuestionId);
         List<AnswerTO> GetAnswersByQuestion(int QuestionId);
+        QuestionTO DeletingQuestion(int UserId, QuestionTO Question);
+
     }
 }

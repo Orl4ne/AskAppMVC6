@@ -12,5 +12,6 @@ namespace AskApp.Ask.DAL.Entities
         public string Message { get; set; }
         public bool IsResolved { get; set; }
         public DateTime Date { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

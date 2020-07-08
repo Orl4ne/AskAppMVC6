@@ -51,9 +51,8 @@ namespace AskApp.Web.Controllers
         {
             var userQuestionVM = new UserQuestionVM
             {
-                User = _userManager.GetUserAsync(User).Result,
                 Question = _askUC.ShowThisQuestion(id),
-                Answers = _askUC.GetAnswersByQuestion(id), 
+                Answers = _askUC.GetAnswersByQuestion(id),
             };
 
             return View(userQuestionVM);
@@ -63,7 +62,7 @@ namespace AskApp.Web.Controllers
         [Authorize]
         public ActionResult CreateQuestion()
         {
-            return View(); 
+            return View();
         }
 
         // POST: AskController/Create
@@ -85,43 +84,35 @@ namespace AskApp.Web.Controllers
             }
         }
 
-        // GET: AskController/Edit/5
-        [Authorize]
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: AskController/Edit/5
-        [HttpPost]
-        [Authorize]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         // GET: AskController/Delete/5
-        public ActionResult Delete(int id)
+        [HttpGet]
+        public ActionResult DeleteQuestion(int id)
         {
-            return View();
+            var question = _askUC.ShowThisQuestion(id);
+            var userQuestionVM = new UserQuestionVM
+            {
+                Question = question,
+            };
+            return View(userQuestionVM);
         }
 
         // POST: AskController/Delete/5
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult DeleteQuestion(int id, UserQuestionVM userQuestionVM)
         {
             try
             {
+                var currentUser = _userManager.GetUserAsync(User).Result;
+                var question = _askUC.ShowThisQuestion(id);
+                userQuestionVM.Question = question;
+                if (currentUser.Id == userQuestionVM.Question.AuthorId)
+                {
+                    _askUC.DeletingQuestion(currentUser.Id, userQuestionVM.Question);
+                    return RedirectToAction(nameof(Index));
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -140,7 +131,7 @@ namespace AskApp.Web.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Answering( int id, AnswerQuestionVM answerVM)
+        public ActionResult Answering(int id, AnswerQuestionVM answerVM)
         {
             try
             {

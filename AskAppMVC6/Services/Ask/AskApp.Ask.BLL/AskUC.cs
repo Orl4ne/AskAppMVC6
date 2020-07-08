@@ -23,6 +23,18 @@ namespace AskApp.Ask.BLL
             return questionRepository.Create(Question);
         }
 
+        public QuestionTO DeletingQuestion(int UserId, QuestionTO Question)
+        {
+            if (UserId == Question.AuthorId)
+            {
+                Question.IsDeleted = true;
+                return questionRepository.Modify(Question);
+            }
+            else
+
+                throw new Exception("You can't delete this question because your are not the author of this question");
+        }
+
         public List<AnswerTO> GetAnswersByQuestion(int QuestionId)
         {
             try
