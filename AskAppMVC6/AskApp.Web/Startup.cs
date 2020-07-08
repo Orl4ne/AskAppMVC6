@@ -98,7 +98,7 @@ namespace AskApp.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Ask}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

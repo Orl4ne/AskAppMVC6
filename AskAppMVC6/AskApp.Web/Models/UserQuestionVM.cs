@@ -11,6 +11,6 @@ namespace AskApp.Web.Models
     {
         public QuestionTO Question { get; set; }
         public AskAppIdentityUser User { get; set; }
-        public AnswerTO Answer { get; set; }
+        public List<AnswerTO> Answers { get; set; }
     }
 }

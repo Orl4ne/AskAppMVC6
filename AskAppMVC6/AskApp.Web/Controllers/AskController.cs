@@ -52,7 +52,8 @@ namespace AskApp.Web.Controllers
             var userQuestionVM = new UserQuestionVM
             {
                 User = _userManager.GetUserAsync(User).Result,
-                Question = _askUC.ShowThisQuestion(id)
+                Question = _askUC.ShowThisQuestion(id),
+                Answers = _askUC.GetAnswersByQuestion(id), 
             };
 
             return View(userQuestionVM);
@@ -130,8 +131,10 @@ namespace AskApp.Web.Controllers
         }
         // GET: AskController/Create
         [Authorize]
-        public ActionResult Answering()
+        [HttpGet("{id}")]
+        public ActionResult Answering(int id)
         {
+            ViewData["questionId"] = id;          
             return View();
         }
 
@@ -139,13 +142,13 @@ namespace AskApp.Web.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Answering(int id, AnswerTO answer)
+        public ActionResult Answering([FromQuery] int questionId, AnswerTO answer)
         {
             try
             {
                 var currentUser = _userManager.GetUserAsync(User).Result;
                 answer.AuthorId = currentUser.Id;
-                _askUC.AnsweringQuestion(id, answer);
+                _askUC.AnsweringQuestion(questionId, answer);
                 return RedirectToAction(nameof(Index));
             }
             catch
