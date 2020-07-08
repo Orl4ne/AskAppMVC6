@@ -132,9 +132,9 @@ namespace AskApp.Web.Controllers
         // GET: AskController/Create
         [Authorize]
         //[HttpGet("{id}")]
-        public ActionResult Answering(int questionId)
+        public ActionResult Answering(int id)
         {
-            ViewData["questionId"] = questionId;
+            ViewData["questionId"] = id;
             return View();
         }
 
@@ -142,13 +142,13 @@ namespace AskApp.Web.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Answering( int questionId, AnswerTO answer)
+        public ActionResult Answering( int id, AnswerTO answer)
         {
             try
             {
                 var currentUser = _userManager.GetUserAsync(User).Result;
                 answer.AuthorId = currentUser.Id;
-                _askUC.AnsweringQuestion(questionId, answer);
+                _askUC.AnsweringQuestion(id, answer);
                 return RedirectToAction(nameof(Index));
             }
             catch
