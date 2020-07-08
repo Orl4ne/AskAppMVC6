@@ -7,7 +7,7 @@ using System.Text;
 
 namespace AskApp.Ask.BLL
 {
-    public partial class AskUC :IAskUC
+    public partial class AskUC : IAskUC
     {
         public AnswerTO AnsweringQuestion(int QuestionId, AnswerTO Answer)
         {
@@ -25,7 +25,15 @@ namespace AskApp.Ask.BLL
 
         public List<AnswerTO> GetAnswersByQuestion(int QuestionId)
         {
-            return answerRepository.GetAll().Where(a => a.AssociatedQuestion.Id == QuestionId).ToList();
+            try
+            {
+                return answerRepository.GetAll().Where(a => a.AssociatedQuestion.Id == QuestionId).ToList();
+            }
+            catch (Exception)
+            {
+
+                return new List<AnswerTO>();
+            }
         }
 
         public QuestionTO MarkMyQuestionAsResolved(int QuestionId)

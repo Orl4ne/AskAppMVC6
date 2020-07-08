@@ -129,12 +129,10 @@ namespace AskApp.Web.Controllers
                 return View();
             }
         }
-        // GET: AskController/Create
+        // GET: AskController/CreateAnswer
         [Authorize]
-        //[HttpGet("{id}")]
-        public ActionResult Answering(int id)
+        public ActionResult Answering()
         {
-            ViewData["questionId"] = id;
             return View();
         }
 
@@ -142,13 +140,19 @@ namespace AskApp.Web.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Answering( int id, AnswerTO answer)
+        public ActionResult Answering( int id, AnswerQuestionVM answerVM)
         {
             try
             {
                 var currentUser = _userManager.GetUserAsync(User).Result;
-                answer.AuthorId = currentUser.Id;
-                _askUC.AnsweringQuestion(id, answer);
+                var associatedQuestion = _askUC.ShowThisQuestion(id);
+                var answerTO = new AnswerTO
+                {
+                    Message = answerVM.Answer.Message,
+                    AssociatedQuestion = associatedQuestion,
+                    AuthorId = currentUser.Id,
+                };
+                _askUC.AnsweringQuestion(id, answerTO);
                 return RedirectToAction(nameof(Index));
             }
             catch

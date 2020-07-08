@@ -62,7 +62,6 @@ namespace AskApp.Ask.DAL.Repositories
         public List<AnswerTO> GetAll()
         {
             var list = askContext.Answers.AsEnumerable()
-                .Where(r => r.AssociatedQuestion.IsResolved != true)
                 ?.Select(x => x.ToTransferObject())
                 .ToList();
             if (!list.Any())

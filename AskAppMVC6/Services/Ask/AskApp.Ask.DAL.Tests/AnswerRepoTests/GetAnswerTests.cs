@@ -49,7 +49,7 @@ namespace AskApp.Ask.DAL.Tests.AnswerRepoTests
             var test = answerRepository.GetAll();
 
             //ASSERT
-            Assert.AreEqual(2, test.Count()); 
+            Assert.AreEqual(3, test.Count()); 
         }
 
         [TestMethod]
