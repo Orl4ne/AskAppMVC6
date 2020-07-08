@@ -13,5 +13,6 @@ namespace AskApp.Common.Interfaces
         QuestionTO ShowThisQuestion(int QuestionId);
         AnswerTO AnsweringQuestion(int QuestionId, AnswerTO Answer);
         QuestionTO MarkMyQuestionAsResolved(int QuestionId);
+        List<AnswerTO> GetAnswersByQuestion(int QuestionId);
     }
 }

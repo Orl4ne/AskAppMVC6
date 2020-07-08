@@ -37,7 +37,7 @@ namespace AskApp.Ask.DAL.Tests.QuestionRepoTests
             var test = questionRepository.GetAll();
 
             //ASSERT
-            Assert.AreEqual(2, test.Count()); // Should be 2 because for the 2nd question, IsResolved = true
+            Assert.AreEqual(3, test.Count()); 
         }
 
         [TestMethod]

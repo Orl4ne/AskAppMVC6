@@ -23,6 +23,11 @@ namespace AskApp.Ask.BLL
             return questionRepository.Create(Question);
         }
 
+        public List<AnswerTO> GetAnswersByQuestion(int QuestionId)
+        {
+            return answerRepository.GetAll().Where(a => a.AssociatedQuestion.Id == QuestionId).ToList();
+        }
+
         public QuestionTO MarkMyQuestionAsResolved(int QuestionId)
         {
             var question = questionRepository.GetById(QuestionId);

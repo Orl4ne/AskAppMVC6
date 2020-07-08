@@ -6,6 +6,7 @@ using AskApp.Common.Interfaces;
 using AskApp.Common.TOs;
 using AskApp.Identity;
 using AskApp.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -58,6 +59,7 @@ namespace AskApp.Web.Controllers
         }
 
         // GET: AskController/Create
+        [Authorize]
         public ActionResult CreateQuestion()
         {
             return View(); 
@@ -65,6 +67,7 @@ namespace AskApp.Web.Controllers
 
         // POST: AskController/Create
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult CreateQuestion(QuestionTO question)
         {
@@ -82,6 +85,7 @@ namespace AskApp.Web.Controllers
         }
 
         // GET: AskController/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
             return View();
@@ -89,6 +93,7 @@ namespace AskApp.Web.Controllers
 
         // POST: AskController/Edit/5
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
         {
@@ -110,11 +115,37 @@ namespace AskApp.Web.Controllers
 
         // POST: AskController/Delete/5
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
             try
             {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        // GET: AskController/Create
+        [Authorize]
+        public ActionResult Answering()
+        {
+            return View();
+        }
+
+        // POST: AskController/Create
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult Answering(int id, AnswerTO answer)
+        {
+            try
+            {
+                var currentUser = _userManager.GetUserAsync(User).Result;
+                answer.AuthorId = currentUser.Id;
+                _askUC.AnsweringQuestion(id, answer);
                 return RedirectToAction(nameof(Index));
             }
             catch
