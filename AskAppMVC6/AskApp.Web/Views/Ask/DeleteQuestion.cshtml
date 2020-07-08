@@ -13,10 +13,10 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            Auteur de la question
+            Auteur de la question :
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.User.UserName)
+            @Html.DisplayFor(model => model.Question.AuthorId)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Question.Title)
