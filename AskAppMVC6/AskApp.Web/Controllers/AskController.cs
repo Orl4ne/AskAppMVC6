@@ -49,10 +49,12 @@ namespace AskApp.Web.Controllers
         // GET: AskController/Details/5
         public ActionResult Details(int id)
         {
+            var currentUser = _userManager.GetUserAsync(User).Result;
             var userQuestionVM = new UserQuestionVM
             {
                 Question = _askUC.ShowThisQuestion(id),
                 Answers = _askUC.GetAnswersByQuestion(id),
+                User = currentUser,
             };
 
             return View(userQuestionVM);
@@ -108,6 +110,7 @@ namespace AskApp.Web.Controllers
                 var currentUser = _userManager.GetUserAsync(User).Result;
                 var question = _askUC.ShowThisQuestion(id);
                 userQuestionVM.Question = question;
+                var questionUserId = question.AuthorId;
                 if (currentUser.Id == userQuestionVM.Question.AuthorId)
                 {
                     _askUC.DeletingQuestion(currentUser.Id, userQuestionVM.Question);

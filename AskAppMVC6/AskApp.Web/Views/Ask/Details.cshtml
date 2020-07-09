@@ -51,6 +51,11 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Answer", "Answering", new { id = Model.Question.Id }) |
+    @if (Model.Question.AuthorId == Model.User.Id)
+    {
+        @Html.ActionLink("Delete", "DeleteQuestion", new { id = Model.Question.Id });
+        @:|
+    }
+     @Html.ActionLink("Answer", "Answering", new { id = Model.Question.Id }) |
     <a asp-action="Index">Back to List</a>
 </div>
