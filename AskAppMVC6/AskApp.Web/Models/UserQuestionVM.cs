@@ -10,7 +10,8 @@ namespace AskApp.Web.Models
     public class UserQuestionVM
     {
         public QuestionTO Question { get; set; }
-        public AskAppIdentityUser User { get; set; }
+        public AskAppIdentityUser CurrentUser { get; set; }
+        public AskAppIdentityUser QuestionAuthor { get; set; }
         public List<AnswerTO> Answers { get; set; }
     }
 }

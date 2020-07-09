@@ -38,8 +38,9 @@ namespace AskApp.Web.Controllers
             {
                 var userQuestionVM = new UserQuestionVM
                 {
-                    User = _userManager.FindByIdAsync(qst.AuthorId.ToString()).Result,
+                    CurrentUser = _userManager.GetUserAsync(User).Result,
                     Question = qst,
+                    QuestionAuthor = _userManager.FindByIdAsync(qst.AuthorId.ToString()).Result,
                 };
                 userQuestions.Add(userQuestionVM);
             }
@@ -54,7 +55,7 @@ namespace AskApp.Web.Controllers
             {
                 Question = _askUC.ShowThisQuestion(id),
                 Answers = _askUC.GetAnswersByQuestion(id),
-                User = currentUser,
+                CurrentUser = currentUser,
             };
 
             return View(userQuestionVM);

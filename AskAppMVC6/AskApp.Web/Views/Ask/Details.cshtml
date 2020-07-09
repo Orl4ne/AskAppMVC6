@@ -50,7 +50,7 @@
         </dl>
     </div>
     <div>
-        @if (Model.Question.AuthorId == Model.User.Id)
+        @if (Model.Question.AuthorId == Model.CurrentUser.Id)
         {
             @Html.ActionLink("Delete", "DeleteQuestion", new { id = Model.Question.Id }, new { @class = "btn btn-danger" });
         }

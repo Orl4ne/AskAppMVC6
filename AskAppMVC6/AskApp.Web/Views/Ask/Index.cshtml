@@ -12,7 +12,13 @@
 @foreach (var item in Model)
 {
     <div class="card border-primary mb-3">
-        <div class="card-header">Header</div>
+        <div class="card-header">
+            from @Html.DisplayFor(modelItem => item.QuestionAuthor.UserName)
+            <div class="text-right float-right">
+                posted @Html.DisplayFor(modelItem => item.Question.Date)
+            </div>
+
+        </div>
         <div class="card-body">
             <h4 class="card-title">@Html.DisplayFor(modelItem => item.Question.Title)</h4>
             <div class="card-text">
