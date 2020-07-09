@@ -48,6 +48,7 @@ namespace AskApp.Web.Controllers
         }
 
         // GET: AskController/Details/5
+        [Authorize]
         public ActionResult Details(int id)
         {
             var currentUser = _userManager.GetUserAsync(User).Result;
