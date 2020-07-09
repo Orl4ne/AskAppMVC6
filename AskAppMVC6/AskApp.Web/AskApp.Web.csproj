@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Services\Identity\AskApp.Identity\AskApp.Identity.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
+  </ItemGroup>
+
 </Project>

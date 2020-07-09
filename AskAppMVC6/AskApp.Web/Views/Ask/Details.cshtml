@@ -5,57 +5,56 @@
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="jumbotron">
+    <h1>Details</h1>
 
-<h1>Details</h1>
+    <div>
+        <hr />
+        <dl class="row">
 
-<div>
-    <h4>QuestionTO</h4>
-    <hr />
-    <dl class="row">
-        
-        <dt class="col-sm-2">
-            Object:
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Question.Title)
-        </dd>
-        <dt class="col-sm-2">
-            Question :
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Question.Message)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Question.IsResolved)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Question.IsResolved)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Question.Date)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Question.Date)
-        </dd>
-        
-        @foreach (var item in Model.Answers)
-        {
             <dt class="col-sm-2">
-                Answer :
+                Object:
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => item.Message)
+                @Html.DisplayFor(model => model.Question.Title)
+            </dd>
+            <dt class="col-sm-2">
+                Question :
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Question.Message)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Question.IsResolved)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Question.IsResolved)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Question.Date)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Question.Date)
             </dd>
 
+            @foreach (var item in Model.Answers)
+            {
+                <dt class="col-sm-2">
+                    Answer :
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => item.Message)
+                </dd>
+
+            }
+        </dl>
+    </div>
+    <div>
+        @if (Model.Question.AuthorId == Model.User.Id)
+        {
+            @Html.ActionLink("Delete", "DeleteQuestion", new { id = Model.Question.Id }, new { @class = "btn btn-danger" });
         }
-    </dl>
-</div>
-<div>
-    @if (Model.Question.AuthorId == Model.User.Id)
-    {
-        @Html.ActionLink("Delete", "DeleteQuestion", new { id = Model.Question.Id });
-        @:|
-    }
-     @Html.ActionLink("Answer", "Answering", new { id = Model.Question.Id }) |
-    <a asp-action="Index">Back to List</a>
+        @Html.ActionLink("Answer", "Answering", new { id = Model.Question.Id }, new { @class = "btn btn-primary" }) 
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
 </div>

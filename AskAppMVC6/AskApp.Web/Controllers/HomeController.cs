@@ -34,11 +34,6 @@ namespace AskApp.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetQuestionsList()
-        {
-            var result = _askUC.ShowAllQuestions();
-            return View(result);
-        }
         public IActionResult Privacy()
         {
             return View();

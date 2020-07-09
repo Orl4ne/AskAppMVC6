@@ -5,49 +5,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<div class="text-right">
+    <a asp-action="CreateQuestion" class="btn btn-warning">Ask a new question</a>
+</div>
 
-<p>
-    <a asp-action="CreateQuestion">Ask a new question</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Question.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Question.Message)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Question.IsResolved)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Question.Date)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Question.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Question.Message)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Question.IsResolved)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Question.Date)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Question.Id }) |
-                @Html.ActionLink("Answer", "Answering", "Ask", new { id = item.Question.Id })
-            </td>
-        </tr>
+@foreach (var item in Model)
+{
+    <div class="card border-primary mb-3">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+            <h4 class="card-title">@Html.DisplayFor(modelItem => item.Question.Title)</h4>
+            <div class="card-text">
+                <p> @Html.DisplayFor(modelItem => item.Question.Message)</p>
+            </div>
+
+            <div class=" text-right">
+                @Html.ActionLink("Details", "Details", new { id = item.Question.Id }, new { @class = "btn btn-secondary" })
+                @Html.ActionLink("Answer", "Answering", "Ask", new { id = item.Question.Id }, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+
 }
-    </tbody>
-</table>
+
