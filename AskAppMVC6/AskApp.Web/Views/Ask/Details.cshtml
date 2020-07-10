@@ -10,51 +10,40 @@
 
     <div>
         <hr />
-        <dl class="row">
+        <div class="card border-primary mb-3">
+            <div class="card-body">
+                <h4 class="card-title">@Html.DisplayFor(model => Model.Question.Message)</h4>
+                <hr />
+                <div class="card-text">
+                    <p> @Html.DisplayFor(model => Model.Question.Message)</p>
+                </div>
+            </div>
+        </div>
 
-            <dt class="col-sm-2">
-                Object:
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Question.Title)
-            </dd>
-            <dt class="col-sm-2">
-                Question :
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Question.Message)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Question.IsResolved)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Question.IsResolved)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Question.Date)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Question.Date)
-            </dd>
-
+        @if (Model.Answers.Count()>0)
+        {
             @foreach (var item in Model.Answers)
             {
-                <dt class="col-sm-2">
-                    Answer :
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => item.Message)
-                </dd>
-
+                <div class="card border-success mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title">Answer</h4>
+                        <hr />
+                        <div class="card-text">
+                            <p> @Html.DisplayFor(model => item.Message)</p>
+                        </div>
+                    </div>
+                </div>
             }
-        </dl>
-    </div>
-    <div>
-        @if (Model.Question.AuthorId == Model.CurrentUser.Id)
-        {
-            @Html.ActionLink("Delete", "DeleteQuestion", new { id = Model.Question.Id }, new { @class = "btn btn-danger" });
+
         }
-        @Html.ActionLink("Answer", "Answering", new { id = Model.Question.Id }, new { @class = "btn btn-primary" }) 
-        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+
+
+        <div>
+            @if (Model.Question.AuthorId == Model.CurrentUser.Id)
+            {
+                @Html.ActionLink("Delete", "DeleteQuestion", new { id = Model.Question.Id }, new { @class = "btn btn-danger" });
+            }
+            @Html.ActionLink("Answer", "Answering", new { id = Model.Question.Id }, new { @class = "btn btn-primary" })
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
     </div>
-</div>

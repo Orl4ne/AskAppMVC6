@@ -70,7 +70,8 @@ body {
     background-color: #fff;
     background-image: url(/img/background.jpg);
     background-repeat: no-repeat;
-    background-size: 100vw 100vh
+    background-size: 100vw 100vh;
+    background-attachment: fixed;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -4522,7 +4523,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    padding: 1.2rem 1rem
+    padding: 1.2rem 1rem;
 }
 
     .navbar .container, .navbar .container-fluid, .navbar .container-sm, .navbar .container-md, .navbar .container-lg, .navbar .container-xl {

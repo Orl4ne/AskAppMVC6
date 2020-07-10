@@ -127,9 +127,14 @@ namespace AskApp.Web.Controllers
         }
         // GET: AskController/CreateAnswer
         [Authorize]
-        public ActionResult Answering()
+        public ActionResult Answering(int id)
         {
-            return View();
+            var question = _askUC.ShowThisQuestion(id);
+            var answerQuestion = new AnswerQuestionVM
+            {
+                Question = question,
+            };
+            return View(answerQuestion);
         }
 
         // POST: AskController/CreateAnswer

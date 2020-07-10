@@ -4,30 +4,39 @@
     ViewData["Title"] = "Answering";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="jumbotron">
-    <h1>Answering</h1>
-    <hr />
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Answering">
-                <input type="hidden" asp-for="Question.Id" />
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Answer.Message" class="control-label"></label>
-                    <textarea asp-for="Answer.Message" class="form-control" />
-                    <span asp-validation-for="Answer.Message" class="text-danger"></span>
+    <div class="jumbotron">
+        <h1>Answering</h1>
+        <hr />
+        <div class="card border-primary mb-3">
+            <div class="card-body">
+                <h4 class="card-title">@Html.DisplayFor(model => Model.Question.Message)</h4>
+                <hr/>
+                <div class="card-text">
+                    <p> @Html.DisplayFor(model => Model.Question.Message)</p>
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Answering" class="btn btn-primary" />
-                </div>
-            </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="Answering">
+                    <input type="hidden" asp-for="Question.Id" />
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label class="control-label">Your answer</label>
+                        <textarea asp-for="Answer.Message" class="form-control"></textarea>
+                        <span asp-validation-for="Answer.Message" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Answering" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
         </div>
     </div>
-
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
