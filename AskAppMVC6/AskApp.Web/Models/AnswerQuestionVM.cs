@@ -1,4 +1,5 @@
 ﻿using AskApp.Common.TOs;
+using AskApp.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace AskApp.Web.Models
     {
         public QuestionTO Question { get; set; }
         public AnswerTO Answer { get; set; }
+        public AskAppIdentityUser AnswerAuthor { get; set; }
     }
 }

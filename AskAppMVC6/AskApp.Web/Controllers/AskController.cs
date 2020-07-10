@@ -52,11 +52,19 @@ namespace AskApp.Web.Controllers
         public ActionResult Details(int id)
         {
             var currentUser = _userManager.GetUserAsync(User).Result;
+            var qst = _askUC.ShowThisQuestion(id);
+            var answers = _askUC.GetAnswersByQuestion(id);
+            foreach (var answ in answers)
+            {
+                var answAuthor = _userManager.FindByIdAsync(answ.AuthorId.ToString()).Result;
+                answ.AnswerAuthor = answAuthor;
+            }
             var userQuestionVM = new UserQuestionVM
             {
-                Question = _askUC.ShowThisQuestion(id),
-                Answers = _askUC.GetAnswersByQuestion(id),
+                Question = qst,
+                Answers = answers,
                 CurrentUser = currentUser,
+                QuestionAuthor = _userManager.FindByIdAsync(qst.AuthorId.ToString()).Result,
             };
 
             return View(userQuestionVM);

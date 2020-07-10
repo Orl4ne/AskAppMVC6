@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Services\Identity\AskApp.Identity\AskApp.Identity.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -11,6 +11,12 @@
     <div>
         <hr />
         <div class="card border-primary mb-3">
+            <div class="card-header">
+                from @Html.DisplayFor(model => Model.QuestionAuthor.UserName)
+                <div class="text-right float-right">
+                    posted @Html.DisplayFor(model => Model.Question.Date)
+                </div>
+            </div>
             <div class="card-body">
                 <h4 class="card-title">@Html.DisplayFor(model => Model.Question.Message)</h4>
                 <hr />
@@ -20,11 +26,14 @@
             </div>
         </div>
 
-        @if (Model.Answers.Count()>0)
+        @if (Model.Answers.Count() > 0)
         {
             @foreach (var item in Model.Answers)
             {
                 <div class="card border-success mb-3">
+                    <div class="card-header">
+                        from @Html.DisplayFor(model => item.AnswerAuthor.UserName)
+                    </div>
                     <div class="card-body">
                         <h4 class="card-title">Answer</h4>
                         <hr />
